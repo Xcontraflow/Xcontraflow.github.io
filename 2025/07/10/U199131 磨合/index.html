@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="contraflow">
+
+
+
+
+
+<title>U199131 磨合 | contraflow&#39;s blog</title>
+
+
+
+    <link rel="icon" href="/image/icpc_logo.png">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+    
+
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const pagebody = document.getElementsByTagName('body')[0]
+
+            function setTheme(status) {
+
+                if (status === 'dark') {
+                    window.sessionStorage.theme = 'dark'
+                    pagebody.classList.add('dark-theme');
+
+                } else if (status === 'light') {
+                    window.sessionStorage.theme = 'light'
+                    pagebody.classList.remove('dark-theme');
+                }
+            };
+
+            setTheme(window.sessionStorage.theme)
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">contraflow&#39;s blog</a></div>
+            <div class="menu navbar-right">
+                
+                <a class="menu-item" href="/archives/">Posts</a>
+                
+                <a class="menu-item" href="/categories/">Categories</a>
+                
+                <a class="menu-item" href="/tags/">Tags</a>
+                
+                <a class="menu-item" href="/about/">About</a>
+                
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">contraflow&#39;s blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">
+                    <svg class="menu-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M4.5 17.27q-.213 0-.356-.145T4 16.768t.144-.356t.356-.143h15q.213 0 .356.144q.144.144.144.357t-.144.356t-.356.143zm0-4.77q-.213 0-.356-.144T4 11.999t.144-.356t.356-.143h15q.213 0 .356.144t.144.357t-.144.356t-.356.143zm0-4.77q-.213 0-.356-.143Q4 7.443 4 7.23t.144-.356t.356-.143h15q.213 0 .356.144T20 7.23t-.144.356t-.356.144z"/></svg>
+                    <svg class="close-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Material Symbols Light by Google - https://github.com/google/material-design-icons/blob/master/LICENSE --><path fill="currentColor" d="m12 12.708l-5.246 5.246q-.14.14-.344.15t-.364-.15t-.16-.354t.16-.354L11.292 12L6.046 6.754q-.14-.14-.15-.344t.15-.364t.354-.16t.354.16L12 11.292l5.246-5.246q.14-.14.345-.15q.203-.01.363.15t.16.354t-.16.354L12.708 12l5.246 5.246q.14.14.15.345q.01.203-.15.363t-.354.16t-.354-.16z"/></svg>
+                </div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                <a class="menu-item" href="/archives/">Posts</a>
+                
+                <a class="menu-item" href="/categories/">Categories</a>
+                
+                <a class="menu-item" href="/tags/">Tags</a>
+                
+                <a class="menu-item" href="/about/">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if (toggleMenu.classList.contains("active")) {
+            toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        } else {
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    var tocbot_timer;
+    var DEPTH_MAX = 6; // 为 6 时展开所有
+    var tocbot_default_config = {
+        tocSelector: '.tocbot-list',
+        contentSelector: '.post-content',
+        headingSelector: 'h1, h2, h3, h4, h5',
+        orderedList: false,
+        scrollSmooth: true,
+        onClick: extend_click,
+    };
+
+    function extend_click() {
+        clearTimeout(tocbot_timer);
+        tocbot_timer = setTimeout(function() {
+            tocbot.refresh(obj_merge(tocbot_default_config, {
+                hasInnerContainers: true
+            }));
+        }, 420); // 这个值是由 tocbot 源码里定义的 scrollSmoothDuration 得来的
+    }
+
+    document.ready(function() {
+        tocbot.init(obj_merge(tocbot_default_config, {
+            collapseDepth: 1
+        }));
+    });
+
+    function expand_toc() {
+        var b = document.querySelector('.tocbot-toc-expand');
+        var expanded = b.getAttribute('data-expanded');
+        expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
+        tocbot.refresh(obj_merge(tocbot_default_config, {
+            collapseDepth: expanded ? 1 : DEPTH_MAX
+        }));
+        b.innerText = expanded ? 'Expand all' : 'Collapse all';
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function obj_merge(target, source) {
+        for (var item in source) {
+            if (source.hasOwnProperty(item)) {
+                target[item] = source[item];
+            }
+        }
+        return target;
+    }
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">U199131 磨合</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">contraflow</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">July 10, 2025&nbsp;&nbsp;22:41:55</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E6%B4%9B%E8%B0%B7%E9%A2%98%E8%A7%A3/">洛谷题解</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h2 id="题意分析与思路"><a href="#题意分析与思路" class="headerlink" title="题意分析与思路"></a>题意分析与思路</h2><p>这道题作为 div2 难度比赛的第二题，一开始我还以为是个 01背包 ，看了眼数据范围，大概是要 $O(n)$、$O(n \log n)$ 的时间复杂度才能过</p>
+<p><del>于是就想了很久有什么办法能压缩01背包的时间复杂度呢，中间还想到了上课教的 dfs + 分支限界</del></p>
+<p>后面再读题就知道是个<strong>贪心</strong>了，要求的是按照任意顺序做题，消耗的时间是 <strong>这道题的难度 * 做这道题的次序</strong>，多次询问，问在 时间 t 下，能解决的最多题数</p>
+<p>有一点像排序，先按从小到大排序（贪心），在对于前 1~x 从大到小的解决，让能做的题里最难的先做，相当于把 [1..k] 里最难的题给 1 秒权重、第二难的给 2 秒权重……这样可以证明是最小的</p>
+<p>那么如何计算呢？我们知道第 k 个所花费的时间为：<br>$$<br>T(k):&#x3D;:\sum_{i&#x3D;1}^ka_i\cdot(k+1-i):&#x3D;:(k+1)\sum_{i&#x3D;1}^ka_i:-:\sum_{i&#x3D;1}^ka_i:i:.<br>$$<br>（其中 $k$ 表示一共要解决的数量，$i$ 表示在这个数组中的题排序后的位置，即 $i &#x3D; 1$ 代表最简单的题）</p>
+<p>所以我们可以开两个数组 <code>psum</code> （前缀和）和 <code>wpsum</code> （加权前缀和）来分别记录 $\sum_{i&#x3D;1}^ka_i$ 和  $\sum_{i&#x3D;1}^ka_i \cdot i$，即可  </p>
+<p>最后，由于是多次询问，只需要对T数组进行<strong>二分查找</strong>，找到第一个大于要求的下标 - 1 即可（<code>upper_bound</code>）</p>
+<p>时间复杂度： $O(n+q\log n)$</p>
+<p>总体难度：上位黄~下位绿</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> int long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> endl <span class="string">&#x27;\n&#x27;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> MAX = <span class="number">1000</span>;</span><br><span class="line"><span class="type">int</span> n, k;</span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    ios::<span class="built_in">sync_with_stdio</span>(<span class="literal">false</span>);</span><br><span class="line">    cin.<span class="built_in">tie</span>(<span class="number">0</span>),cout.<span class="built_in">tie</span>(<span class="number">0</span>);</span><br><span class="line">    cin &gt;&gt; n &gt;&gt; k;</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">a</span><span class="params">(n)</span></span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) cin &gt;&gt; a[i];</span><br><span class="line">    <span class="built_in">sort</span>(a.<span class="built_in">begin</span>(), a.<span class="built_in">end</span>());</span><br><span class="line"></span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">psum</span><span class="params">(n + <span class="number">1</span>, <span class="number">0</span>)</span>, <span class="title">wpsum</span><span class="params">(n + <span class="number">1</span>, <span class="number">0</span>)</span>, <span class="title">T</span><span class="params">(n + <span class="number">1</span>, <span class="number">0</span>)</span></span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        psum[i] = psum[i - <span class="number">1</span>] + a[i - <span class="number">1</span>];</span><br><span class="line">        wpsum[i] = wpsum[i - <span class="number">1</span>] + a[i - <span class="number">1</span>] * i;</span><br><span class="line">        T[i] = (i + <span class="number">1</span>) * psum[i] - wpsum[i];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(k--)&#123;</span><br><span class="line">        <span class="type">int</span> x;</span><br><span class="line">        cin &gt;&gt; x;</span><br><span class="line">        <span class="type">int</span> re = (<span class="type">int</span>)(<span class="built_in">upper_bound</span>(T.<span class="built_in">begin</span>() + <span class="number">1</span>,T.<span class="built_in">end</span>(),x) - T.<span class="built_in">begin</span>()) - <span class="number">1</span>;</span><br><span class="line">        cout &lt;&lt; re &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="原题题面"><a href="#原题题面" class="headerlink" title="原题题面"></a>原题题面</h2><p>题目来自于 <strong>【LGR-229-Div.2】桃李未来 6 月月赛 I &amp; GMSK - 01</strong>，下面贴出原题题面</p>
+<h3 id="题目背景"><a href="#题目背景" class="headerlink" title="题目背景"></a>题目背景</h3><blockquote>
+<p>「能够像这样『磨合』，实在是帮了个大忙。」<br>——绫濑沙季</p>
+</blockquote>
+<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>悠太和沙季遇到了 $n$ 个问题，问题的难度分别为 $d_1,\dots,d_n$。</p>
+<p>他们可以以任意顺序解决问题，对于准备解决的第 $i$ 个问题，每将难度减少 $1$，两人需要花费 $i$ 秒。将难度减少为 $0$ 时问题被解决，他们才可以继续解决下一个问题。</p>
+<p>如果他们正在解决第 $i$ 个问题（即难度尚未减少为 $0$），但剩余时间少于 $i$ 秒，他们就不能继续解决剩下的问题了，第 $i$ 个问题也没有解决。</p>
+<p>他们想要知道，如果共有 $t$ 秒，那么最多能解决多少个问题。由于他们可能面对很多种不同情况，所以会多次改变 $t$ 进行询问。</p>
+<h3 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h3><p>第一行输入两个整数 $n,q$ 表示问题总数和询问次数。</p>
+<p>第二行输入 $n$ 个整数，表示 $d_1,\dots,d_n$。</p>
+<p>接下来 $q$ 行，每行输入一个整数表示询问的总时间 $t$。</p>
+<h3 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h3><p>对于每次询问输出一行一个整数表示最多能解决的问题数量。</p>
+<h3 id="输入输出样例-1"><a href="#输入输出样例-1" class="headerlink" title="输入输出样例 #1"></a>输入输出样例 #1</h3><h4 id="输入-1"><a href="#输入-1" class="headerlink" title="输入 #1"></a>输入 #1</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">3 2</span><br><span class="line">1 7 3</span><br><span class="line">10</span><br><span class="line">16</span><br></pre></td></tr></table></figure>
+
+<h4 id="输出-1"><a href="#输出-1" class="headerlink" title="输出 #1"></a>输出 #1</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">2</span><br><span class="line">3</span><br></pre></td></tr></table></figure>
+
+<h3 id="输入输出样例-2"><a href="#输入输出样例-2" class="headerlink" title="输入输出样例 #2"></a>输入输出样例 #2</h3><h4 id="输入-2"><a href="#输入-2" class="headerlink" title="输入 #2"></a>输入 #2</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">10 3</span><br><span class="line">923 243 389 974 100 485 296 377 61 552</span><br><span class="line">2403</span><br><span class="line">5819</span><br><span class="line">0</span><br></pre></td></tr></table></figure>
+
+<h4 id="输出-2"><a href="#输出-2" class="headerlink" title="输出 #2"></a>输出 #2</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">5</span><br><span class="line">6</span><br><span class="line">0</span><br></pre></td></tr></table></figure>
+
+<h3 id="说明-提示"><a href="#说明-提示" class="headerlink" title="说明&#x2F;提示"></a>说明&#x2F;提示</h3><h4 id="样例-1-解释"><a href="#样例-1-解释" class="headerlink" title="样例 1 解释"></a>样例 1 解释</h4><p>若 $t&#x3D;10$，则第 $1$ 个解决难度为 $7$ 的问题，第 $2$ 个解决难度为 $1$ 的问题，花费的时间为 $1\times7+2\times1&#x3D;9$ 秒。可以证明他们无法解决三个问题。</p>
+<p>若 $t&#x3D;16$，则依次解决难度为 $7,3,1$ 的问题，花费的时间为 $1\times7+2\times3+3\times1&#x3D;16$ 秒。</p>
+<h4 id="数据范围与限制"><a href="#数据范围与限制" class="headerlink" title="数据范围与限制"></a>数据范围与限制</h4><p><strong>本题采用捆绑测试，各 Subtask 的限制与分值如下。</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">Subtask No.</th>
+<th align="center">$n\le$</th>
+<th align="center">$q\le$</th>
+<th align="center">$d_i\le$</th>
+<th align="center">$t\le$</th>
+<th align="center">分值</th>
+<th align="center">依赖子任务</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">$1$</td>
+<td align="center">$10$</td>
+<td align="center">$1$</td>
+<td align="center">$10$</td>
+<td align="center">$10^3$</td>
+<td align="center">$13$</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">$2$</td>
+<td align="center">$10^3$</td>
+<td align="center">$1$</td>
+<td align="center">$10^3$</td>
+<td align="center">$10^9$</td>
+<td align="center">$24$</td>
+<td align="center">$1$</td>
+</tr>
+<tr>
+<td align="center">$3$</td>
+<td align="center">$10^3$</td>
+<td align="center">$10^6$</td>
+<td align="center">$10^3$</td>
+<td align="center">$10^9$</td>
+<td align="center">$16$</td>
+<td align="center">$1,2$</td>
+</tr>
+<tr>
+<td align="center">$4$</td>
+<td align="center">$10^6$</td>
+<td align="center">$1$</td>
+<td align="center">$10^3$</td>
+<td align="center">$10^{16}$</td>
+<td align="center">$16$</td>
+<td align="center">$1,2$</td>
+</tr>
+<tr>
+<td align="center">$5$</td>
+<td align="center">$10^6$</td>
+<td align="center">$10^6$</td>
+<td align="center">$10^3$</td>
+<td align="center">$10^{16}$</td>
+<td align="center">$31$</td>
+<td align="center">$1,2,3,4$</td>
+</tr>
+</tbody></table>
+<p>对于所有数据，满足 $1\le n,q\le10^6$，$1\le d_i\le10^3$，$0\le t\le10^{16}$。</p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>contraflow</span>
+                    </p>
+                
+                
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E8%B4%AA%E5%BF%83/"># 贪心</a>
+                    
+                        <a href="/tags/%E5%89%8D%E7%BC%80%E5%92%8C/"># 前缀和</a>
+                    
+                        <a href="/tags/%E4%BA%8C%E5%88%86/"># 二分</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2025/07/10/P1659%20%E6%8B%89%E6%8B%89%E9%98%9F%E6%8E%92%E7%BB%83/">P1659 [国家集训队] 拉拉队排练——板子</a>
+            
+            
+            <a class="next" rel="next" href="/2025/07/10/P3131%20Subsequences%20Summing%20to%20Sevens%20S/">P3131 Subsequences Summing to Sevens S</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© contraflow | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>

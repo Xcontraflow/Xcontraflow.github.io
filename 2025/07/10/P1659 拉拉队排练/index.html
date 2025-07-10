@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="contraflow">
+
+
+
+
+
+<title>P1659 [国家集训队] 拉拉队排练——板子 | contraflow&#39;s blog</title>
+
+
+
+    <link rel="icon" href="/image/icpc_logo.png">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+    
+
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const pagebody = document.getElementsByTagName('body')[0]
+
+            function setTheme(status) {
+
+                if (status === 'dark') {
+                    window.sessionStorage.theme = 'dark'
+                    pagebody.classList.add('dark-theme');
+
+                } else if (status === 'light') {
+                    window.sessionStorage.theme = 'light'
+                    pagebody.classList.remove('dark-theme');
+                }
+            };
+
+            setTheme(window.sessionStorage.theme)
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">contraflow&#39;s blog</a></div>
+            <div class="menu navbar-right">
+                
+                <a class="menu-item" href="/archives/">Posts</a>
+                
+                <a class="menu-item" href="/categories/">Categories</a>
+                
+                <a class="menu-item" href="/tags/">Tags</a>
+                
+                <a class="menu-item" href="/about/">About</a>
+                
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">contraflow&#39;s blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">
+                    <svg class="menu-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M4.5 17.27q-.213 0-.356-.145T4 16.768t.144-.356t.356-.143h15q.213 0 .356.144q.144.144.144.357t-.144.356t-.356.143zm0-4.77q-.213 0-.356-.144T4 11.999t.144-.356t.356-.143h15q.213 0 .356.144t.144.357t-.144.356t-.356.143zm0-4.77q-.213 0-.356-.143Q4 7.443 4 7.23t.144-.356t.356-.143h15q.213 0 .356.144T20 7.23t-.144.356t-.356.144z"/></svg>
+                    <svg class="close-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Material Symbols Light by Google - https://github.com/google/material-design-icons/blob/master/LICENSE --><path fill="currentColor" d="m12 12.708l-5.246 5.246q-.14.14-.344.15t-.364-.15t-.16-.354t.16-.354L11.292 12L6.046 6.754q-.14-.14-.15-.344t.15-.364t.354-.16t.354.16L12 11.292l5.246-5.246q.14-.14.345-.15q.203-.01.363.15t.16.354t-.16.354L12.708 12l5.246 5.246q.14.14.15.345q.01.203-.15.363t-.354.16t-.354-.16z"/></svg>
+                </div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                <a class="menu-item" href="/archives/">Posts</a>
+                
+                <a class="menu-item" href="/categories/">Categories</a>
+                
+                <a class="menu-item" href="/tags/">Tags</a>
+                
+                <a class="menu-item" href="/about/">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if (toggleMenu.classList.contains("active")) {
+            toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        } else {
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    var tocbot_timer;
+    var DEPTH_MAX = 6; // 为 6 时展开所有
+    var tocbot_default_config = {
+        tocSelector: '.tocbot-list',
+        contentSelector: '.post-content',
+        headingSelector: 'h1, h2, h3, h4, h5',
+        orderedList: false,
+        scrollSmooth: true,
+        onClick: extend_click,
+    };
+
+    function extend_click() {
+        clearTimeout(tocbot_timer);
+        tocbot_timer = setTimeout(function() {
+            tocbot.refresh(obj_merge(tocbot_default_config, {
+                hasInnerContainers: true
+            }));
+        }, 420); // 这个值是由 tocbot 源码里定义的 scrollSmoothDuration 得来的
+    }
+
+    document.ready(function() {
+        tocbot.init(obj_merge(tocbot_default_config, {
+            collapseDepth: 1
+        }));
+    });
+
+    function expand_toc() {
+        var b = document.querySelector('.tocbot-toc-expand');
+        var expanded = b.getAttribute('data-expanded');
+        expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
+        tocbot.refresh(obj_merge(tocbot_default_config, {
+            collapseDepth: expanded ? 1 : DEPTH_MAX
+        }));
+        b.innerText = expanded ? 'Expand all' : 'Collapse all';
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function obj_merge(target, source) {
+        for (var item in source) {
+            if (source.hasOwnProperty(item)) {
+                target[item] = source[item];
+            }
+        }
+        return target;
+    }
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">P1659 [国家集训队] 拉拉队排练——板子</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">contraflow</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">July 10, 2025&nbsp;&nbsp;22:45:03</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E6%B4%9B%E8%B0%B7%E9%A2%98%E8%A7%A3/">洛谷题解</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h2 id="题意解读-思路"><a href="#题意解读-思路" class="headerlink" title="题意解读 + 思路"></a>题意解读 + 思路</h2><p>原题中描述的“和谐小群体”其实就是回文字符串，这道题用 <strong>manacher</strong> 的基调就定下来了，同时观察样例可以发现，回文字符子串的子串也会被算在内</p>
+<p>所以可以很快想到，<strong>固定中心</strong>的一个最长回文字符子串能提供的回文串的数量是：$(自身长度+ 1)&#x2F;2$ ，比如<code>ababa</code> 自身能提供的是 <code>ababa</code>、<code>bab</code>、<code>a</code><br>这点可以再后面进行特判</p>
+<p>我们知道 <strong>manacher</strong> 能为我们提供一个 数组 <code>r</code> 维护的是以该点为中心的回文子串的最长半径，所以我们可以遍历这个数组（遍历其中所有非桩节点），计算 cnt ，同时维护一个<strong>最小堆</strong>，并对这个回文子串的长度不断的进行-2处理，当堆中的个数不足 k 个的时候，直接 push，当个数 &gt;&#x3D; k 并且当前元素大于堆顶元素的时候，就 pop 堆顶，再 push 当前元素<br>最后遍历堆进行相乘即可</p>
+<p>（这个思路来自于洛谷官方提单-二叉堆和树状数组中堆的题目，即维护一个最小堆，固定堆的大小为要取的元素个数 k ，当当前元素大于堆顶元素时，pop，再把当前元素push进去，）</p>
+<p>注意 -1 的特判，那么恭喜，这样可以拿到 55 分，最后一个点m，其余的点t了</p>
+<hr>
+<p>分析一下可以看到，我们在不断的减2处理上浪费了太多的时间，让时间复杂度趋近于 $O(n^2)$，而且减2到最后的1 3这样很短的长度，往往最后不会被使用，所以没有必要</p>
+<p>我们可以想办法改善这个过程，即 <code>r[i]</code> 一定是比较大的，所以可以维护一个最大堆，并将 <code>r[i]</code> 先 push 进去，并在之后的循环中一边相乘堆顶的元素，一边将堆顶元素 -2 放进堆中，这样就能保证堆中的元素往往是较大的</p>
+<p>循环的次数是 k 次，因为我们只要 k 个</p>
+<p>注意在与结果相乘的时候使用 <code>__int128_t</code> （用快乘来防爆的就等着t吧）代码如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> int long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> endl <span class="string">&#x27;\n&#x27;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> MOD = <span class="number">19930726</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> MAX = <span class="number">1e6</span> + <span class="number">5</span>;</span><br><span class="line">vector&lt;<span class="type">int</span>&gt; r;</span><br><span class="line"><span class="type">int</span> n, k;</span><br><span class="line"><span class="type">int</span> m;</span><br><span class="line">string s;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">fm</span><span class="params">(<span class="type">int</span> a,<span class="type">int</span> b)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (<span class="type">int</span>)((<span class="type">__int128_t</span>)a * b % MOD);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">manacher</span><span class="params">(<span class="type">const</span> string &amp;s)</span> </span>&#123;</span><br><span class="line">    string t = <span class="string">&quot;@#&quot;</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">char</span> c : s) &#123;</span><br><span class="line">        t += c;</span><br><span class="line">        t += <span class="string">&#x27;#&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    t += <span class="string">&#x27;$&#x27;</span>;</span><br><span class="line">    m = (<span class="type">int</span>)t.<span class="built_in">size</span>() - <span class="number">1</span>;</span><br><span class="line">    r.<span class="built_in">assign</span>(m + <span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">    <span class="type">int</span> mid = <span class="number">0</span>, R = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; m; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (i &lt; R) &#123;</span><br><span class="line">            <span class="type">int</span> mirror = (mid &lt;&lt; <span class="number">1</span>) - i;</span><br><span class="line">            r[i] = <span class="built_in">min</span>(r[mirror], R - i);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            r[i] = <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (t[i + r[i]] == t[i - r[i]]) &#123;</span><br><span class="line">            ++r[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (i + r[i] &gt; R) &#123;</span><br><span class="line">            R = i + r[i];</span><br><span class="line">            mid = i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span> ;i &lt; m; i++)&#123;</span><br><span class="line">        r[i]--;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    ios::<span class="built_in">sync_with_stdio</span>(<span class="literal">false</span>);</span><br><span class="line">    cin.<span class="built_in">tie</span>(<span class="number">0</span>),cout.<span class="built_in">tie</span>(<span class="number">0</span>);</span><br><span class="line">    cin &gt;&gt; n &gt;&gt; k;</span><br><span class="line">    cin &gt;&gt; s;</span><br><span class="line">    <span class="built_in">manacher</span>(s);</span><br><span class="line">    priority_queue&lt;<span class="type">int</span>&gt; pq;</span><br><span class="line">    <span class="type">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">2</span> ; i &lt; m ; i += <span class="number">2</span>)&#123;</span><br><span class="line">        cnt += (r[i] + <span class="number">1</span>) / <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(cnt &lt; k)&#123;</span><br><span class="line">        cout &lt;&lt; <span class="number">-1</span> &lt;&lt; endl;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">2</span> ; i &lt; m ; i += <span class="number">2</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span> (r[i] &gt; <span class="number">0</span>)   pq.<span class="built_in">push</span>(r[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">int</span> re = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; k ; i++)&#123;</span><br><span class="line">        <span class="type">int</span> t = pq.<span class="built_in">top</span>();</span><br><span class="line">        pq.<span class="built_in">pop</span>();</span><br><span class="line">        re = <span class="built_in">fm</span>(re, t);</span><br><span class="line">        <span class="keyword">if</span>(t &gt; <span class="number">2</span>)&#123;</span><br><span class="line">            pq.<span class="built_in">push</span>(t - <span class="number">2</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; re &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样的代码已经很好了，得了95分，只差最后一个点过不去</p>
+<p>时间复杂度大概是 $O(n\log n+k\log n)$<br>其中：</p>
+<ul>
+<li>manacher是 $O(n)$</li>
+<li>建堆是 $O(n \log n)$</li>
+<li>取 k 个 + 堆内部操作是 $O(k \log n)$</li>
+</ul>
+<p>仍需优化</p>
+<hr>
+<p>再看一眼标签，这道题有个 <strong>前缀和</strong></p>
+<p>我们想到，如果一个回文字符串的长度是 5 ，那么 1 、3、5的回文字符串的个数都会 + 1，简单来说，就是 <strong>长度小于等于字符串长度的所有奇数</strong> 都 + 1了</p>
+<p>如果我们能统计该长度回文串出现的次数，那在最后乘法的时候，只需将 $字符串长度 * 出现的次数$ 即可</p>
+<p>有什么办法，可以在线性时间内做区间增加呢？正是<strong>差分+前缀和</strong></p>
+<p>维护一个差分数组，对 <code>dif[1]++</code> 、<code>dif[t + 2]--</code> （为啥是 +2，因为我们只需要奇数的增加，所以直接到下一个奇数会比较好</p>
+<p>之后扫一遍前缀和</p>
+<p>最后我们需要记录还需要多少个数 <code>ned</code> ，和这次能拿多少个数 <code>take</code> ，当然有可能不需要那么多，就是 <code>ned</code> &lt; <code>take</code> 的情况<br><code>re</code> 只需要乘上 当前长度 <code>i</code> 的 <code>take</code> 次幂即可</p>
+<h2 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> int long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> endl <span class="string">&#x27;\n&#x27;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> MOD = <span class="number">19930726</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> MAX = <span class="number">1e6</span> + <span class="number">5</span>;</span><br><span class="line">vector&lt;<span class="type">int</span>&gt; r;</span><br><span class="line"><span class="type">int</span> n, k;</span><br><span class="line"><span class="type">int</span> m;</span><br><span class="line">string s;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">fp</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> re = <span class="number">1</span>;</span><br><span class="line">    a %= MOD;</span><br><span class="line">    <span class="keyword">while</span>(b)&#123;</span><br><span class="line">        <span class="keyword">if</span>(b &amp; <span class="number">1</span>)&#123;</span><br><span class="line">            re = (re * a) % MOD;</span><br><span class="line">        &#125;</span><br><span class="line">        b &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">        a = (a * a) % MOD;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> re % MOD;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">fm</span><span class="params">(<span class="type">int</span> a,<span class="type">int</span> b)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (<span class="type">int</span>)((<span class="type">__int128_t</span>)a * b % MOD);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">manacher</span><span class="params">(<span class="type">const</span> string &amp;s)</span> </span>&#123;</span><br><span class="line">    string t = <span class="string">&quot;@#&quot;</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">char</span> c : s) &#123;</span><br><span class="line">        t += c;</span><br><span class="line">        t += <span class="string">&#x27;#&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    t += <span class="string">&#x27;$&#x27;</span>;</span><br><span class="line">    m = (<span class="type">int</span>)t.<span class="built_in">size</span>() - <span class="number">1</span>;</span><br><span class="line">    r.<span class="built_in">assign</span>(m + <span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">    <span class="type">int</span> mid = <span class="number">0</span>, R = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; m; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (i &lt; R) &#123;</span><br><span class="line">            <span class="type">int</span> mirror = (mid &lt;&lt; <span class="number">1</span>) - i;</span><br><span class="line">            r[i] = <span class="built_in">min</span>(r[mirror], R - i);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            r[i] = <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (t[i + r[i]] == t[i - r[i]]) &#123;</span><br><span class="line">            ++r[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (i + r[i] &gt; R) &#123;</span><br><span class="line">            R = i + r[i];</span><br><span class="line">            mid = i;</span><br><span class="line">        &#125;</span><br><span class="line">        r[i]--;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    ios::<span class="built_in">sync_with_stdio</span>(<span class="literal">false</span>);</span><br><span class="line">    cin.<span class="built_in">tie</span>(<span class="number">0</span>),cout.<span class="built_in">tie</span>(<span class="number">0</span>);</span><br><span class="line">    cin &gt;&gt; n &gt;&gt; k;</span><br><span class="line">    cin &gt;&gt; s;</span><br><span class="line">    <span class="built_in">manacher</span>(s);</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> maxl = LLONG_MIN;</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">dif</span><span class="params">(n + <span class="number">3</span>, <span class="number">0</span>)</span></span>;</span><br><span class="line">    <span class="type">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">2</span>; i &lt; m ; i += <span class="number">2</span>)&#123;     <span class="comment">//差分的时候扫的是桩子，让所有的奇数位改变</span></span><br><span class="line">        <span class="type">int</span> t = r[i];</span><br><span class="line">        dif[<span class="number">1</span>]++, dif[t + <span class="number">2</span>]--;</span><br><span class="line">        cnt += (t + <span class="number">1</span>) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">        maxl = <span class="built_in">max</span>(maxl, t);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(cnt &lt; k)&#123;</span><br><span class="line">        cout &lt;&lt; <span class="number">-1</span> &lt;&lt; endl;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">psum</span><span class="params">(maxl + <span class="number">3</span>, <span class="number">0</span>)</span></span>;  <span class="comment">//用maxl省空间</span></span><br><span class="line">    <span class="type">int</span> cur = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= maxl; i++)&#123;     <span class="comment">//前缀和的时候扫的是具体的数，所以从 1 开始</span></span><br><span class="line">        cur += dif[i];</span><br><span class="line">        psum[i] = cur;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">int</span> ned = k, re = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = maxl ; i &gt;= <span class="number">1</span> ; i -= <span class="number">2</span>)&#123;</span><br><span class="line">        <span class="type">int</span> have = psum[i];</span><br><span class="line">        <span class="type">int</span> take = <span class="built_in">min</span>(have, ned);</span><br><span class="line">        re = <span class="built_in">fm</span>(re, <span class="built_in">fp</span>(i,take));</span><br><span class="line">        ned -= take;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; re &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="板子"><a href="#板子" class="headerlink" title="板子"></a>板子</h2><p>下面给出能计算起始位置和长度的 <strong>manacher</strong> 板子</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span> MAX = <span class="number">1e7</span> + <span class="number">1e6</span>;</span><br><span class="line"><span class="type">int</span> r[MAX * <span class="number">2</span> + <span class="number">5</span>];</span><br><span class="line"></span><br><span class="line"><span class="function">pair&lt;<span class="type">int</span>, <span class="type">int</span>&gt; <span class="title">manacher</span><span class="params">(<span class="type">const</span> string &amp;s)</span> </span>&#123;</span><br><span class="line">    string t = <span class="string">&quot;@#&quot;</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">char</span> c : s) &#123;</span><br><span class="line">        t += c;</span><br><span class="line">        t += <span class="string">&#x27;#&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    t += <span class="string">&#x27;$&#x27;</span>;</span><br><span class="line">    <span class="type">int</span> n = (<span class="type">int</span>)t.<span class="built_in">size</span>() - <span class="number">1</span>;</span><br><span class="line">    <span class="type">int</span> mid = <span class="number">0</span>, R = <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> bestlen = <span class="number">0</span>, bestcen = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; n; i++) &#123;</span><br><span class="line">        r[i] = (i &lt; R) ? <span class="built_in">min</span>(r[(mid &lt;&lt; <span class="number">1</span>) - i], R - i) : <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (t[i + r[i]] == t[i - r[i]]) &#123;</span><br><span class="line">            ++r[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (i + r[i] &gt; R) &#123;</span><br><span class="line">            R = i + r[i];</span><br><span class="line">            mid = i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (r[i] - <span class="number">1</span> &gt; bestlen) &#123;</span><br><span class="line">            bestlen = r[i] - <span class="number">1</span>;</span><br><span class="line">            bestcen = i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">int</span> sta = (bestcen - bestlen - <span class="number">1</span>) / <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">return</span> &#123;sta, bestlen&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>contraflow</span>
+                    </p>
+                
+                
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/"># 字符串</a>
+                    
+                        <a href="/tags/manacher/"># manacher</a>
+                    
+                        <a href="/tags/%E5%BF%AB%E9%80%9F%E5%B9%82/"># 快速幂</a>
+                    
+                        <a href="/tags/%E5%89%8D%E7%BC%80%E5%92%8C/"># 前缀和</a>
+                    
+                        <a href="/tags/%E5%B7%AE%E5%88%86/"># 差分</a>
+                    
+                        <a href="/tags/int128/"># int128</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2025/07/10/P4942%20%E5%B0%8F%E5%87%AF%E7%9A%84%E6%95%B0%E5%AD%97/">P4942 小凯的数字</a>
+            
+            
+            <a class="next" rel="next" href="/2025/07/10/U199131%20%E7%A3%A8%E5%90%88/">U199131 磨合</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© contraflow | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>

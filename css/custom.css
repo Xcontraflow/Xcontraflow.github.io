@@ -1,0 +1,36 @@
+/* -------- 全站基础字号放大 -------- */
+body {
+  font-size: 12.5pt;
+}
+/* -------- 如果只想放大正文，而顶部导航保持原大小 -------- */
+.post-content {
+  font-size: 0.95em;
+}
+/* -------- 可选：更精细地调节标题与正文比例 -------- */
+h1 {
+  font-size: 1.9em;
+}
+h2 {
+  font-size: 1.6em;
+}
+h3 {
+  font-size: 1.45em;
+}
+h4 {
+  font-size: 1.3em;
+}
+h5 {
+  font-size: 1.15em;
+}
+h6 {
+  font-size: 1em;
+}
+/* === 代码块字号硬覆盖兜底版 === */
+body pre,
+body pre code,
+body .highlight,
+body .highlight code,
+body .hljs {
+  font-size: 14.5px !important;
+  line-height: 1.5 !important;
+}

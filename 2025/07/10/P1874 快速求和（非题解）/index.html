@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="contraflow">
+
+
+
+
+
+<title>P1874 快速求和（非题解） | contraflow&#39;s blog</title>
+
+
+
+    <link rel="icon" href="/image/icpc_logo.png">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+    
+
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const pagebody = document.getElementsByTagName('body')[0]
+
+            function setTheme(status) {
+
+                if (status === 'dark') {
+                    window.sessionStorage.theme = 'dark'
+                    pagebody.classList.add('dark-theme');
+
+                } else if (status === 'light') {
+                    window.sessionStorage.theme = 'light'
+                    pagebody.classList.remove('dark-theme');
+                }
+            };
+
+            setTheme(window.sessionStorage.theme)
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">contraflow&#39;s blog</a></div>
+            <div class="menu navbar-right">
+                
+                <a class="menu-item" href="/archives/">Posts</a>
+                
+                <a class="menu-item" href="/categories/">Categories</a>
+                
+                <a class="menu-item" href="/tags/">Tags</a>
+                
+                <a class="menu-item" href="/about/">About</a>
+                
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">contraflow&#39;s blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">
+                    <svg class="menu-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M4.5 17.27q-.213 0-.356-.145T4 16.768t.144-.356t.356-.143h15q.213 0 .356.144q.144.144.144.357t-.144.356t-.356.143zm0-4.77q-.213 0-.356-.144T4 11.999t.144-.356t.356-.143h15q.213 0 .356.144t.144.357t-.144.356t-.356.143zm0-4.77q-.213 0-.356-.143Q4 7.443 4 7.23t.144-.356t.356-.143h15q.213 0 .356.144T20 7.23t-.144.356t-.356.144z"/></svg>
+                    <svg class="close-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Material Symbols Light by Google - https://github.com/google/material-design-icons/blob/master/LICENSE --><path fill="currentColor" d="m12 12.708l-5.246 5.246q-.14.14-.344.15t-.364-.15t-.16-.354t.16-.354L11.292 12L6.046 6.754q-.14-.14-.15-.344t.15-.364t.354-.16t.354.16L12 11.292l5.246-5.246q.14-.14.345-.15q.203-.01.363.15t.16.354t-.16.354L12.708 12l5.246 5.246q.14.14.15.345q.01.203-.15.363t-.354.16t-.354-.16z"/></svg>
+                </div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                <a class="menu-item" href="/archives/">Posts</a>
+                
+                <a class="menu-item" href="/categories/">Categories</a>
+                
+                <a class="menu-item" href="/tags/">Tags</a>
+                
+                <a class="menu-item" href="/about/">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if (toggleMenu.classList.contains("active")) {
+            toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        } else {
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    var tocbot_timer;
+    var DEPTH_MAX = 6; // 为 6 时展开所有
+    var tocbot_default_config = {
+        tocSelector: '.tocbot-list',
+        contentSelector: '.post-content',
+        headingSelector: 'h1, h2, h3, h4, h5',
+        orderedList: false,
+        scrollSmooth: true,
+        onClick: extend_click,
+    };
+
+    function extend_click() {
+        clearTimeout(tocbot_timer);
+        tocbot_timer = setTimeout(function() {
+            tocbot.refresh(obj_merge(tocbot_default_config, {
+                hasInnerContainers: true
+            }));
+        }, 420); // 这个值是由 tocbot 源码里定义的 scrollSmoothDuration 得来的
+    }
+
+    document.ready(function() {
+        tocbot.init(obj_merge(tocbot_default_config, {
+            collapseDepth: 1
+        }));
+    });
+
+    function expand_toc() {
+        var b = document.querySelector('.tocbot-toc-expand');
+        var expanded = b.getAttribute('data-expanded');
+        expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
+        tocbot.refresh(obj_merge(tocbot_default_config, {
+            collapseDepth: expanded ? 1 : DEPTH_MAX
+        }));
+        b.innerText = expanded ? 'Expand all' : 'Collapse all';
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function obj_merge(target, source) {
+        for (var item in source) {
+            if (source.hasOwnProperty(item)) {
+                target[item] = source[item];
+            }
+        }
+        return target;
+    }
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">P1874 快速求和（非题解）</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">contraflow</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">July 10, 2025&nbsp;&nbsp;22:54:27</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E6%B4%9B%E8%B0%B7%E9%A2%98%E8%A7%A3/">洛谷题解</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>一道有够耻辱的题目，用dfs+剪枝+记忆化（也是剪枝）硬是过不了</p>
+<p>思路比较常规，但是要注意：</p>
+<ul>
+<li>用umap做记忆化</li>
+<li>去除前导0</li>
+<li>如果后面不拆还是到不了（直接加上后面的全部），剪枝</li>
+<li>如果后面的每一位都拆还是比目标大（将每一位都拆成个位数），剪枝</li>
+<li>找不到输出-1</li>
+<li>爆ll</li>
+</ul>
+<p>难度：上位黄（一道同样的题，只不过把加法换乘法，能用dfs+高精度乘法，是绿）<br><del>会dp的人当我没说</del></p>
+<h2 id="代码（超时在hack数据的-2）"><a href="#代码（超时在hack数据的-2）" class="headerlink" title="代码（超时在hack数据的#2）"></a>代码（超时在hack数据的#2）</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> int long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> endl <span class="string">&#x27;\n&#x27;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function">string <span class="title">erase0</span><span class="params">(<span class="type">const</span> string&amp; s)</span></span>&#123;</span><br><span class="line">    <span class="type">size_t</span> pos = s.<span class="built_in">find_first_not_of</span>(<span class="string">&#x27;0&#x27;</span>);</span><br><span class="line">    <span class="keyword">if</span> (pos == string::npos)</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;0&quot;</span>;</span><br><span class="line">    <span class="keyword">return</span> s.<span class="built_in">substr</span>(pos);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">string <span class="title">jjadd</span><span class="params">(<span class="type">const</span> string &amp;A, <span class="type">const</span> string &amp;B)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> i = A.<span class="built_in">size</span>() - <span class="number">1</span>;</span><br><span class="line">    <span class="type">int</span> j = B.<span class="built_in">size</span>() - <span class="number">1</span>;</span><br><span class="line">    <span class="type">int</span> carry = <span class="number">0</span>;</span><br><span class="line">    string C;</span><br><span class="line">    C.<span class="built_in">reserve</span>(<span class="built_in">max</span>(A.<span class="built_in">size</span>(), B.<span class="built_in">size</span>()) + <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">while</span> (i &gt;= <span class="number">0</span> || j &gt;= <span class="number">0</span> || carry) &#123;</span><br><span class="line">        <span class="type">int</span> a = (i &gt;= <span class="number">0</span> ? A[i--] - <span class="string">&#x27;0&#x27;</span> : <span class="number">0</span>);</span><br><span class="line">        <span class="type">int</span> b = (j &gt;= <span class="number">0</span> ? B[j--] - <span class="string">&#x27;0&#x27;</span> : <span class="number">0</span>);</span><br><span class="line">        <span class="type">int</span> sum = a + b + carry;</span><br><span class="line">        C.<span class="built_in">push_back</span>(<span class="built_in">char</span>(<span class="string">&#x27;0&#x27;</span> + (sum % <span class="number">10</span>)));</span><br><span class="line">        carry = sum / <span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">reverse</span>(C.<span class="built_in">begin</span>(),C.<span class="built_in">end</span>());</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">erase0</span>(C);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">isGreater</span><span class="params">(<span class="type">const</span> string &amp;A, <span class="type">const</span> string &amp;B)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (A.<span class="built_in">size</span>() != B.<span class="built_in">size</span>())</span><br><span class="line">        <span class="keyword">return</span> A.<span class="built_in">size</span>() &gt; B.<span class="built_in">size</span>();</span><br><span class="line">    <span class="keyword">return</span> A &gt; B;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">string s;</span><br><span class="line">string tar;</span><br><span class="line"><span class="type">int</span> minn = LLONG_MAX;</span><br><span class="line">vector&lt;string&gt; a;</span><br><span class="line">unordered_map&lt;<span class="type">int</span>,unordered_map&lt;string, <span class="type">int</span>&gt;&gt; memo;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> pos,string cursum,<span class="type">int</span> cnt)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">isGreater</span>(cursum,tar))    <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">if</span>(cnt &gt;= minn)  <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">if</span>(memo[pos].<span class="built_in">count</span>(cursum)  &amp;&amp; memo[pos][cursum] &lt;= cnt)    <span class="keyword">return</span>;</span><br><span class="line">    memo[pos][cursum] = cnt;</span><br><span class="line">    <span class="keyword">if</span> (pos == s.<span class="built_in">size</span>()) &#123;</span><br><span class="line">        <span class="keyword">if</span> (cursum == tar) &#123;</span><br><span class="line">            minn = <span class="built_in">min</span>(minn, cnt);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> minrest = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = pos ; i &lt; s.<span class="built_in">size</span>() ; i++)&#123;</span><br><span class="line">        minrest += s[i] - <span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    string t1 = <span class="built_in">to_string</span>(minrest);</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">isGreater</span>(<span class="built_in">jjadd</span>(cursum,t1),tar))  <span class="keyword">return</span>;</span><br><span class="line">    string t2 = <span class="built_in">erase0</span>(s.<span class="built_in">substr</span>(pos));</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">isGreater</span>(tar,<span class="built_in">jjadd</span>(cursum,t2))) <span class="keyword">return</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = pos + <span class="number">1</span>;i &lt;= s.<span class="built_in">size</span>(); i++)&#123;</span><br><span class="line">        string sub = s.<span class="built_in">substr</span>(pos, i - pos);</span><br><span class="line">        sub = <span class="built_in">erase0</span>(sub);</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">isGreater</span>(<span class="built_in">jjadd</span>(cursum, sub),tar))&#123;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">dfs</span>(i, <span class="built_in">jjadd</span>(cursum, sub), cnt + <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    ios::<span class="built_in">sync_with_stdio</span>(<span class="literal">false</span>);</span><br><span class="line">    cin.<span class="built_in">tie</span>(<span class="number">0</span>),cout.<span class="built_in">tie</span>(<span class="number">0</span>);</span><br><span class="line">    cin &gt;&gt; s &gt;&gt; tar;</span><br><span class="line">    <span class="built_in">dfs</span>(<span class="number">0</span>,<span class="string">&quot;0&quot;</span>, <span class="number">-1</span> );</span><br><span class="line">    cout &lt;&lt; (minn == LLONG_MAX ? <span class="number">-1</span> : minn) &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>contraflow</span>
+                    </p>
+                
+                
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E6%90%9C%E7%B4%A2/"># 搜索</a>
+                    
+                        <a href="/tags/%E5%89%AA%E6%9E%9D/"># 剪枝</a>
+                    
+                        <a href="/tags/%E8%AE%B0%E5%BF%86%E5%8C%96/"># 记忆化</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2025/07/10/T609495%20%E7%AE%80%E6%98%93%20JSON%20%E8%A7%A3%E6%9E%90/">T609495 简易 JSON 解析</a>
+            
+            
+            <a class="next" rel="next" href="/2025/07/10/B3968%20%E3%80%90GESP202403%20%E4%BA%94%E7%BA%A7%E3%80%91%20%E6%88%90%E7%BB%A9%E6%8E%92%E5%BA%8F/">B3968 【GESP202403 五级】 成绩排序</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© contraflow | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>

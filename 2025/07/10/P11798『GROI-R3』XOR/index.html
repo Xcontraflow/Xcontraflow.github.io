@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="contraflow">
+
+
+
+
+
+<title>P11798『GROI-R3』XOR | contraflow&#39;s blog</title>
+
+
+
+    <link rel="icon" href="/image/icpc_logo.png">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+    
+
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const pagebody = document.getElementsByTagName('body')[0]
+
+            function setTheme(status) {
+
+                if (status === 'dark') {
+                    window.sessionStorage.theme = 'dark'
+                    pagebody.classList.add('dark-theme');
+
+                } else if (status === 'light') {
+                    window.sessionStorage.theme = 'light'
+                    pagebody.classList.remove('dark-theme');
+                }
+            };
+
+            setTheme(window.sessionStorage.theme)
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">contraflow&#39;s blog</a></div>
+            <div class="menu navbar-right">
+                
+                <a class="menu-item" href="/archives/">Posts</a>
+                
+                <a class="menu-item" href="/categories/">Categories</a>
+                
+                <a class="menu-item" href="/tags/">Tags</a>
+                
+                <a class="menu-item" href="/about/">About</a>
+                
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">contraflow&#39;s blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">
+                    <svg class="menu-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M4.5 17.27q-.213 0-.356-.145T4 16.768t.144-.356t.356-.143h15q.213 0 .356.144q.144.144.144.357t-.144.356t-.356.143zm0-4.77q-.213 0-.356-.144T4 11.999t.144-.356t.356-.143h15q.213 0 .356.144t.144.357t-.144.356t-.356.143zm0-4.77q-.213 0-.356-.143Q4 7.443 4 7.23t.144-.356t.356-.143h15q.213 0 .356.144T20 7.23t-.144.356t-.356.144z"/></svg>
+                    <svg class="close-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Material Symbols Light by Google - https://github.com/google/material-design-icons/blob/master/LICENSE --><path fill="currentColor" d="m12 12.708l-5.246 5.246q-.14.14-.344.15t-.364-.15t-.16-.354t.16-.354L11.292 12L6.046 6.754q-.14-.14-.15-.344t.15-.364t.354-.16t.354.16L12 11.292l5.246-5.246q.14-.14.345-.15q.203-.01.363.15t.16.354t-.16.354L12.708 12l5.246 5.246q.14.14.15.345q.01.203-.15.363t-.354.16t-.354-.16z"/></svg>
+                </div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                <a class="menu-item" href="/archives/">Posts</a>
+                
+                <a class="menu-item" href="/categories/">Categories</a>
+                
+                <a class="menu-item" href="/tags/">Tags</a>
+                
+                <a class="menu-item" href="/about/">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if (toggleMenu.classList.contains("active")) {
+            toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        } else {
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    var tocbot_timer;
+    var DEPTH_MAX = 6; // 为 6 时展开所有
+    var tocbot_default_config = {
+        tocSelector: '.tocbot-list',
+        contentSelector: '.post-content',
+        headingSelector: 'h1, h2, h3, h4, h5',
+        orderedList: false,
+        scrollSmooth: true,
+        onClick: extend_click,
+    };
+
+    function extend_click() {
+        clearTimeout(tocbot_timer);
+        tocbot_timer = setTimeout(function() {
+            tocbot.refresh(obj_merge(tocbot_default_config, {
+                hasInnerContainers: true
+            }));
+        }, 420); // 这个值是由 tocbot 源码里定义的 scrollSmoothDuration 得来的
+    }
+
+    document.ready(function() {
+        tocbot.init(obj_merge(tocbot_default_config, {
+            collapseDepth: 1
+        }));
+    });
+
+    function expand_toc() {
+        var b = document.querySelector('.tocbot-toc-expand');
+        var expanded = b.getAttribute('data-expanded');
+        expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
+        tocbot.refresh(obj_merge(tocbot_default_config, {
+            collapseDepth: expanded ? 1 : DEPTH_MAX
+        }));
+        b.innerText = expanded ? 'Expand all' : 'Collapse all';
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function obj_merge(target, source) {
+        for (var item in source) {
+            if (source.hasOwnProperty(item)) {
+                target[item] = source[item];
+            }
+        }
+        return target;
+    }
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">P11798『GROI-R3』XOR</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">contraflow</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">July 10, 2025&nbsp;&nbsp;23:45:05</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E6%B4%9B%E8%B0%B7%E9%A2%98%E8%A7%A3/">洛谷题解</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p>观前提醒，本题解中前两个代码都是本人思考思路，<strong>不能完全通过所有测试点！！！</strong>，呈现只是为了和我一样的蒟蒻参考自己的错误地方，还请各位dalao友善点评，谢谢</p>
+<h2 id="思考："><a href="#思考：" class="headerlink" title="思考："></a>思考：</h2><p>这道题，我最开始使用的是二重循环，时间复杂度为$O(n^2)$</p>
+<p>但是，<strong>观察这题的数据范围</strong>： 数据大小 <code>l</code> 和 <code>r</code> 都是 $1 \times 10 ^ 9$，数据量是 $1 \times 10 ^ 5$ ，这样的情况下，$O(n^2)$ 的时间复杂度可能过不去</p>
+<p>然后，开始学习到异或的相关知识：</p>
+<h3 id="区间异或和"><a href="#区间异或和" class="headerlink" title="区间异或和"></a>区间异或和</h3><p>对于区间 <code>[l, r]</code>，可以通过如下关系来计算从 <code>l</code> 到 <code>r</code> 的异或值：<br>$$<br>\text{XOR}(l, r) &#x3D; \text{XOR}(0, r) \oplus \text{XOR}(0, l-1)<br>$$<br>因为从 <code>0</code> 到 <code>r</code> 的异或值已经通过上述规律可以快速计算得出，再通过减去从 <code>0</code> 到 <code>l-1</code> 的异或值，就可以得到从 <code>l</code> 到 <code>r</code> 的异或值。这种做法的时间复杂度是常数时间 $O(1)$。</p>
+<p>即对于 <code>k</code> 到 <code>i</code> 的异或值可以利用从 <code>k</code> 到 <code>i-1</code> 的异或值递推得到</p>
+<p>那么，我们就得到了优化，省掉了一个循环，总体时间复杂度降为$O(n)$</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">re = <span class="built_in">XOR</span>(k - <span class="number">1</span>) ^ <span class="built_in">XOR</span>(i);</span><br></pre></td></tr></table></figure>
+<p>代码如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ll long long </span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line">vector&lt;ll&gt; a;</span><br><span class="line"></span><br><span class="line"><span class="function">ll <span class="title">XOR</span><span class="params">(ll x)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a[x];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="type">int</span> m;</span><br><span class="line">	cin &gt;&gt; m;</span><br><span class="line">	a.<span class="built_in">push_back</span>(<span class="number">0</span>);</span><br><span class="line">	a.<span class="built_in">push_back</span>(<span class="number">1</span>);</span><br><span class="line">	<span class="keyword">while</span> (m--) &#123;</span><br><span class="line">		<span class="type">int</span> l, r, k, x;</span><br><span class="line">		cin &gt;&gt; l &gt;&gt; r &gt;&gt; k &gt;&gt; x;</span><br><span class="line">		<span class="type">int</span> re = k;</span><br><span class="line">		<span class="type">bool</span> f = <span class="literal">false</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> i = l; i &lt;= r; i++) &#123;</span><br><span class="line">			re = <span class="built_in">XOR</span>(k - <span class="number">1</span>) ^ <span class="built_in">XOR</span>(i);</span><br><span class="line">			<span class="keyword">if</span> (re == x) &#123;</span><br><span class="line">				f = <span class="literal">true</span>;</span><br><span class="line">				cout &lt;&lt; i &lt;&lt; endl;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (!f) &#123;</span><br><span class="line">			cout &lt;&lt; <span class="number">-1</span> &lt;&lt; endl;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>但是，我们仍然使用了一个数组，提交上去也是不出所料，只ac了4个点，拿到20分，其余的点由 m 和 t 构成。<br><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/record/204335392">测试点情况</a></p>
+<p>难道这题要用 $O(\log n)$ 的做法吗？我们继续看：</p>
+<h3 id="异或的周期性"><a href="#异或的周期性" class="headerlink" title="异或的周期性"></a>异或的周期性</h3><p>对于任何整数 <code>a</code>，可以发现一些有趣的规律：</p>
+<ul>
+<li><code>a ^ a = 0</code></li>
+<li><code>a ^ 0 = a</code></li>
+<li><code>a ^ b = b ^ a</code>（交换律）</li>
+<li><code>(a ^ b) ^ c = a ^ (b ^ c)</code>（结合律）</li>
+</ul>
+<p>此外，异或的一个周期性规律是，连续的整数的异或有一个周期性。比如，考虑对于整数 $n$ ，我们计算从 $0$ 到 $n$ 的异或值 $f(n)$ ，有如下规律：</p>
+<ul>
+<li>$f(n) &#x3D; 0$ ，当 $n \bmod 4 &#x3D;&#x3D; 0$</li>
+<li>$f(n) &#x3D; n$ ，当 $n \bmod 4 &#x3D;&#x3D; 1$</li>
+<li>$f(n) &#x3D; 1$ ，当 $n \bmod 4 &#x3D;&#x3D; 2$</li>
+<li>$f(n) &#x3D; n + 1$ ，当 $n \bmod 4 &#x3D;&#x3D; 3$</li>
+</ul>
+<p>也就是说，异或从 $0$ 到 $n$ 的值是有周期性的，每四个数就会重复一次这个模式。</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/Mychael/p/8633365.html">连续数字异或和证明</a></p>
+<p>代码如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">lxxor</span><span class="params">(<span class="type">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">switch</span> (n % <span class="number">4</span>) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">0</span>: <span class="keyword">return</span> n;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">1</span>: <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">2</span>: <span class="keyword">return</span> n + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">3</span>: <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>并且还有一个小优化，即 <code>x % 4 == x &amp; 3</code><br>例如：$13&#x3D;(1101)_2$，$13 \bmod 4&#x3D;3$，同时 $3 &#x3D; (0011)_2$ 异或后也是 $3$</p>
+<p>代码如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ll long long</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">xuanz</span><span class="params">(<span class="type">int</span> n)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">switch</span> (n &amp; <span class="number">3</span>) &#123;</span><br><span class="line">	<span class="keyword">case</span> <span class="number">0</span>:<span class="keyword">return</span> n;</span><br><span class="line">	<span class="keyword">case</span> <span class="number">1</span>:<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">case</span> <span class="number">2</span>:<span class="keyword">return</span> n + <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">case</span> <span class="number">3</span>:<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	ios::<span class="built_in">sync_with_stdio</span>(<span class="number">0</span>);</span><br><span class="line">	cin.<span class="built_in">tie</span>(<span class="number">0</span>); cout.<span class="built_in">tie</span>(<span class="number">0</span>);</span><br><span class="line">	<span class="type">int</span> m;</span><br><span class="line">	cin &gt;&gt; m;</span><br><span class="line">	<span class="keyword">while</span> (m--) &#123;</span><br><span class="line">		<span class="type">int</span> l, r, k, x;</span><br><span class="line">		cin &gt;&gt; l &gt;&gt; r &gt;&gt; k &gt;&gt; x;</span><br><span class="line">		<span class="type">int</span> re = k;</span><br><span class="line">		<span class="type">int</span> ans = <span class="number">-1</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> i = l; i &lt;= r; i++) &#123;</span><br><span class="line">			re = <span class="built_in">xuanz</span>(k - <span class="number">1</span>) ^ <span class="built_in">xuanz</span>(i);</span><br><span class="line">			<span class="keyword">if</span> (re == x) &#123;</span><br><span class="line">				ans = i;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		cout &lt;&lt; ans &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>但是，但是，这种做法还是只能搞定40分，其余的全 t 了，因为这种时间复杂度为 $O(n)$，还是不够。<br><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/record/204344098">测试点情况</a></p>
+<p>这个时候，有dalao可能会说，好家伙搞半天你就让我看这丑陋的代码，还喵的不对</p>
+<p>接下来，给出了第三层思路</p>
+<ul>
+<li>如果 $n$ 存在，那么一定是 $k$ 异或到 $n$（题意）</li>
+<li>将 $x$ 异或 $1 \to k-1$ 的异或 ，那么得到的结果就是 $1$ 异或 $n$ ，即目标值 $t$</li>
+<li>再根据上面的公式，用 $t$ 反向查询 $n$ 并输出</li>
+</ul>
+<p>其实最难的是第三个点，即<strong>反向查询</strong>，这也是时间复杂度优化的关键</p>
+<p>上代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ll long long</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">int</span> l, r, k, x;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">xuanz</span><span class="params">(<span class="type">int</span> n)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">switch</span> (n &amp; <span class="number">3</span>) &#123;</span><br><span class="line">	<span class="keyword">case</span> <span class="number">0</span>: <span class="keyword">return</span> n;</span><br><span class="line">	<span class="keyword">case</span> <span class="number">1</span>: <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">case</span> <span class="number">2</span>: <span class="keyword">return</span> n + <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">case</span> <span class="number">3</span>: <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">fx</span><span class="params">(<span class="type">int</span> x)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (x % <span class="number">4</span> == <span class="number">0</span> &amp;&amp; x &gt;= l &amp;&amp; x &lt;= r) &#123;	<span class="comment">//对应上面case 0</span></span><br><span class="line">		<span class="keyword">return</span> x;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (x == <span class="number">1</span>) &#123;	<span class="comment">//对应上面case 1</span></span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> i = l; i &lt;= r; i++) &#123;</span><br><span class="line">			<span class="keyword">if</span> (i % <span class="number">4</span> == <span class="number">1</span>)    <span class="keyword">return</span> i;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="type">int</span> w = x - <span class="number">1</span>;	</span><br><span class="line">	<span class="keyword">if</span> (w % <span class="number">4</span> == <span class="number">2</span> &amp;&amp; w &gt;= l &amp;&amp; w &lt;= r) &#123;	<span class="comment">//对应上面case 2</span></span><br><span class="line">		<span class="keyword">return</span> w;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (x == <span class="number">0</span>) &#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> i = l; i &lt;= r; i++) &#123;	<span class="comment">//对应上面case 3</span></span><br><span class="line">			<span class="keyword">if</span> (i % <span class="number">4</span> == <span class="number">3</span>)    <span class="keyword">return</span> i;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="type">int</span> T;</span><br><span class="line">	cin &gt;&gt; T;</span><br><span class="line">	<span class="keyword">while</span> (T--) &#123;</span><br><span class="line">		cin &gt;&gt; l &gt;&gt; r &gt;&gt; k &gt;&gt; x;</span><br><span class="line">		<span class="type">int</span> ans = <span class="number">-1</span>;</span><br><span class="line">		<span class="type">int</span> t = <span class="built_in">xuanz</span>(k - <span class="number">1</span>) ^ x;</span><br><span class="line">		<span class="type">int</span> n = <span class="built_in">fx</span>(t);</span><br><span class="line">		cout &lt;&lt; n &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样优化之后，时间复杂度已经降到了 $O(1)$，也是能成功ac了</p>
+<p>（这是本蒟蒻第一次提交题解，也希望温柔可爱通情达理的管理员们大大网开一面，万谢）</p>
+<p>（第二次提交修正了其中没有正确使用数学公式的问题，望通过，臣生当陨首，死当结草）</p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>contraflow</span>
+                    </p>
+                
+                
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E4%BD%8D%E8%BF%90%E7%AE%97/"># 位运算</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2025/07/10/P1288%20%E5%8F%96%E6%95%B0%E6%B8%B8%E6%88%8F%20II/">P1288 取数游戏 II</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© contraflow | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
