@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="contraflow">
+
+
+
+
+
+<title>25杭电多校暑期第五场 - 四角洲行动 1005 | contraflow&#39;s blog</title>
+
+
+
+    <link rel="icon" href="/image/icpc_logo.png">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+    
+
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const pagebody = document.getElementsByTagName('body')[0]
+
+            function setTheme(status) {
+
+                if (status === 'dark') {
+                    window.sessionStorage.theme = 'dark'
+                    pagebody.classList.add('dark-theme');
+
+                } else if (status === 'light') {
+                    window.sessionStorage.theme = 'light'
+                    pagebody.classList.remove('dark-theme');
+                }
+            };
+
+            setTheme(window.sessionStorage.theme)
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">contraflow&#39;s blog</a></div>
+            <div class="menu navbar-right">
+                
+                <a class="menu-item" href="/archives/">Posts</a>
+                
+                <a class="menu-item" href="/categories/">Categories</a>
+                
+                <a class="menu-item" href="/tags/">Tags</a>
+                
+                <a class="menu-item" href="/about/">About</a>
+                
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">contraflow&#39;s blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">
+                    <svg class="menu-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M4.5 17.27q-.213 0-.356-.145T4 16.768t.144-.356t.356-.143h15q.213 0 .356.144q.144.144.144.357t-.144.356t-.356.143zm0-4.77q-.213 0-.356-.144T4 11.999t.144-.356t.356-.143h15q.213 0 .356.144t.144.357t-.144.356t-.356.143zm0-4.77q-.213 0-.356-.143Q4 7.443 4 7.23t.144-.356t.356-.143h15q.213 0 .356.144T20 7.23t-.144.356t-.356.144z"/></svg>
+                    <svg class="close-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Material Symbols Light by Google - https://github.com/google/material-design-icons/blob/master/LICENSE --><path fill="currentColor" d="m12 12.708l-5.246 5.246q-.14.14-.344.15t-.364-.15t-.16-.354t.16-.354L11.292 12L6.046 6.754q-.14-.14-.15-.344t.15-.364t.354-.16t.354.16L12 11.292l5.246-5.246q.14-.14.345-.15q.203-.01.363.15t.16.354t-.16.354L12.708 12l5.246 5.246q.14.14.15.345q.01.203-.15.363t-.354.16t-.354-.16z"/></svg>
+                </div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                <a class="menu-item" href="/archives/">Posts</a>
+                
+                <a class="menu-item" href="/categories/">Categories</a>
+                
+                <a class="menu-item" href="/tags/">Tags</a>
+                
+                <a class="menu-item" href="/about/">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if (toggleMenu.classList.contains("active")) {
+            toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        } else {
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    var tocbot_timer;
+    var DEPTH_MAX = 6; // 为 6 时展开所有
+    var tocbot_default_config = {
+        tocSelector: '.tocbot-list',
+        contentSelector: '.post-content',
+        headingSelector: 'h1, h2, h3, h4, h5',
+        orderedList: false,
+        scrollSmooth: true,
+        onClick: extend_click,
+    };
+
+    function extend_click() {
+        clearTimeout(tocbot_timer);
+        tocbot_timer = setTimeout(function() {
+            tocbot.refresh(obj_merge(tocbot_default_config, {
+                hasInnerContainers: true
+            }));
+        }, 420); // 这个值是由 tocbot 源码里定义的 scrollSmoothDuration 得来的
+    }
+
+    document.ready(function() {
+        tocbot.init(obj_merge(tocbot_default_config, {
+            collapseDepth: 1
+        }));
+    });
+
+    function expand_toc() {
+        var b = document.querySelector('.tocbot-toc-expand');
+        var expanded = b.getAttribute('data-expanded');
+        expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
+        tocbot.refresh(obj_merge(tocbot_default_config, {
+            collapseDepth: expanded ? 1 : DEPTH_MAX
+        }));
+        b.innerText = expanded ? 'Expand all' : 'Collapse all';
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function obj_merge(target, source) {
+        for (var item in source) {
+            if (source.hasOwnProperty(item)) {
+                target[item] = source[item];
+            }
+        }
+        return target;
+    }
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">25杭电多校暑期第五场 - 四角洲行动 1005</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">contraflow</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">September 11, 2025&nbsp;&nbsp;13:51:54</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E6%9D%AD%E7%94%B5%E5%A4%9A%E6%A0%A1/">杭电多校</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h2 id="题面"><a href="#题面" class="headerlink" title="题面"></a>题面</h2><h4 id="Problem-Description"><a href="#Problem-Description" class="headerlink" title="Problem Description"></a>Problem Description</h4><p>有若干个 $1 \times 1, 1 \times 2, 1 \times 3, 2 \times 2$ 的物品和格子，物品有价值，问最多能把多少价值的物品放入格子内。每个大小的物品个数和格子个数都小于等于 $100$</p>
+<p>（完整版题面在后记）</p>
+<h4 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h4><p>首先一个正整数 $T$，表示数据组数。<br>对于每组数据，第一行四个非负整数 $a, b, c, d \ (a + b + c + d &gt; 0, \ a, b, c, d \leq 100)$，分别表示大小为 $1 \times 1, \ 1 \times 2, \ 1 \times 3, \ 2 \times 2$ 的格子数量。<br>接下来四行，按照大小为 $1 \times 1, \ 1 \times 2, \ 1 \times 3, \ 2 \times 2$ 的顺序描述每种材料。<br>第 $i$ 行首先一个非负整数 $k_i \ (0 \leq k_i \leq 1000)$，表示这种大小的材料数量，接下来 $k_i$ 个正整数 $v_{i,1}, \dots, v_{i,k_i} \ (1 \leq v_{i,j} \leq 10^4)$ 分别表示每个材料的价值。<br>保证所有数据的 $a$ 之和、$b$ 之和、$c$ 之和、$d$ 之和都不超过 $5 \times 100$，所有数据的 $k_1$ 之和、$k_2$ 之和、$k_3$ 之和、$k_4$ 之和都不超过 $4 \times 10^5$。  </p>
+<h4 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h4><p>对于每组数据，输出一行一个非负整数，表示能带出的最大价值。</p>
+<blockquote>
+<p>[!Tip]- 官方题解<br>首先肯定是对每个大小的物品按价值排序，考虑格子和物品的尺寸非常特殊。可以考虑直接枚举格子放物品的情况，求出每个大小的物品要几个，然后计算价值，最后对所有情况取最大值  </p>
+<p>对于 $2 \times 2$ 的格子，要么放一个 $2 \times 2$，要么可以直接看成 $2$ 个 $1 \times 2$ 的格子进行考虑（$1 \times 2$ 的格子的拆分可以在后面枚举到 $1 \times 2$ 的时候再进行考虑）。<br>对于 $1 \times 3$ 的格子，要么放一个 $1 \times 3$，要么可以看成 $1$ 个 $1 \times 2$ 和 $1$ 个 $1 \times 1$ 的格子。<br>对于 $1 \times 2$ 的格子，要么放一个 $1 \times 2$，要么可以看成 $2$ 个 $1 \times 1$ 的格子。  </p>
+<p>那么对于每种格子都可以直接枚举几个放同样大小的物品，剩下的直接拆分成更小的格子<br>这样就可以在 $O(n^3)$ 的时间枚举所有的物品需求情况，那么对于每个大小的物品，显然只要价值最大的那些，提前从大到小排序做前缀和即可 $O(1)$ 的时间计算物品最大价值之和。<br>因此总时间复杂度为 $O(n^3)$</p>
+</blockquote>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>暴力枚举<br>将格子拆分，具体的拆分模式见代码中的注释，枚举所有物品的需求的情况</p>
+<p>按照价值进行排序，并提前对每组物品的价值做前缀和（预处理）后面就可以直接查询</p>
+<p>总体难度：中位黄~上位黄</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> int long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> endl <span class="string">&#x27;\n&#x27;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> MAX = <span class="number">10010</span>;</span><br><span class="line"><span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">calc</span><span class="params">(<span class="type">const</span> vector&lt;<span class="type">int</span>&gt; &amp;cnt, <span class="type">const</span> vector&lt;<span class="type">int</span>&gt; &amp;k,</span></span></span><br><span class="line"><span class="params"><span class="function">          <span class="type">const</span> vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; sm)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> re = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span> ; i &lt; <span class="number">4</span> ;i++)&#123;</span><br><span class="line">        <span class="type">int</span> take = cnt[i];      </span><br><span class="line">        <span class="keyword">if</span>(take &gt; k[i])    take = k[i];     <span class="comment">//能拿的比物品数量多</span></span><br><span class="line">        <span class="keyword">if</span>(take &lt; <span class="number">0</span>)  take = <span class="number">0</span>;     <span class="comment">//保险</span></span><br><span class="line">        re += sm[i][take];      <span class="comment">//拿前take个元素</span></span><br><span class="line">    &#125;</span><br><span class="line">    ans = <span class="built_in">max</span>(ans, re);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    ios::<span class="built_in">sync_with_stdio</span>(<span class="literal">false</span>);</span><br><span class="line">    cin.<span class="built_in">tie</span>(<span class="number">0</span>), cout.<span class="built_in">tie</span>(<span class="number">0</span>);</span><br><span class="line">    <span class="type">int</span> T;</span><br><span class="line">    cin &gt;&gt; T;</span><br><span class="line">    <span class="keyword">while</span>(T--)&#123;</span><br><span class="line">        ans = <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> a, b, c, d;</span><br><span class="line">        cin &gt;&gt; a &gt;&gt; b &gt;&gt; c &gt;&gt; d;</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">cnt</span><span class="params">(<span class="number">4</span>, <span class="number">0</span>)</span>, <span class="title">k</span><span class="params">(<span class="number">4</span>, <span class="number">0</span>)</span></span>; <span class="comment">//cnt记录构造出多少个格子，k记录有多少个东西</span></span><br><span class="line">        vector&lt;vector&lt;<span class="type">int</span>&gt; &gt; <span class="built_in">v</span>(<span class="number">4</span>,<span class="built_in">vector</span>&lt;<span class="type">int</span>&gt;(MAX, <span class="number">0</span>));  <span class="comment">//记录每个物品的价值</span></span><br><span class="line">        vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">sm</span>(<span class="number">4</span>, <span class="built_in">vector</span>&lt;<span class="type">int</span>&gt;(MAX, <span class="number">0</span>)); <span class="comment">//记录元素价值前缀和</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++)&#123;</span><br><span class="line">            cin &gt;&gt; k[i];</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">1</span>; j &lt;= k[i]; j++)&#123;</span><br><span class="line">                cin &gt;&gt; v[i][j];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//从大到小排序</span></span><br><span class="line">            <span class="built_in">sort</span>(v[i].<span class="built_in">begin</span>() + <span class="number">1</span>, v[i].<span class="built_in">begin</span>() + <span class="number">1</span> + k[i], <span class="built_in">greater</span>&lt;<span class="type">int</span>&gt;());    </span><br><span class="line">            sm[i][<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">1</span> ;j &lt;= k[i]; j++)&#123;</span><br><span class="line">                sm[i][j] = sm[i][j - <span class="number">1</span>] + v[i][j];  <span class="comment">//前缀和</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        cnt[<span class="number">0</span>] = a;     <span class="comment">//1x1的不拆</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt;= b; i++)&#123;    </span><br><span class="line">            cnt[<span class="number">0</span>] += i * <span class="number">2</span>;    <span class="comment">//1x2的可以拆成2个1x1</span></span><br><span class="line">            cnt[<span class="number">1</span>] += b - i;    <span class="comment">//剩下是1x2的</span></span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">0</span>; j &lt;= c; j++)&#123;</span><br><span class="line">                <span class="keyword">for</span>(<span class="type">int</span> p = <span class="number">0</span>; j + p &lt;= c; p++)&#123;</span><br><span class="line">                    cnt[<span class="number">0</span>] += j * <span class="number">3</span>;    <span class="comment">//拆成3个1x1的</span></span><br><span class="line">                    cnt[<span class="number">0</span>] += p;        <span class="comment">//或者拆成一个1x2 和 一个1x1</span></span><br><span class="line">                    cnt[<span class="number">1</span>] += p;</span><br><span class="line">                    cnt[<span class="number">2</span>] += c - j - p;    <span class="comment">//剩下是1x3的</span></span><br><span class="line">                    <span class="keyword">for</span>(<span class="type">int</span> q = <span class="number">0</span> ;q &lt;= d; q++)&#123;</span><br><span class="line">                        <span class="keyword">for</span>(<span class="type">int</span> x = <span class="number">0</span>; x + q &lt;= d; x++)&#123;</span><br><span class="line">                            <span class="keyword">for</span>(<span class="type">int</span> y = <span class="number">0</span>; x + y + q &lt;= d ;y++)&#123;</span><br><span class="line">                                cnt[<span class="number">0</span>] += q * <span class="number">4</span>;    <span class="comment">//四个1x1</span></span><br><span class="line">                                cnt[<span class="number">0</span>] += x * <span class="number">2</span>;    <span class="comment">//两个1x1 和 一个1x2</span></span><br><span class="line">                                cnt[<span class="number">1</span>] += x;</span><br><span class="line">                                cnt[<span class="number">1</span>] += y * <span class="number">2</span>;    <span class="comment">//两个1x2</span></span><br><span class="line">                                cnt[<span class="number">3</span>] += d - q - x - y;    <span class="comment">//剩余1x4</span></span><br><span class="line"></span><br><span class="line">                                <span class="built_in">calc</span>(cnt ,k, sm);   <span class="comment">//判断能不能成功</span></span><br><span class="line"></span><br><span class="line">                                cnt[<span class="number">0</span>] -= q * <span class="number">4</span>;    <span class="comment">//回溯</span></span><br><span class="line">                                cnt[<span class="number">0</span>] -= x * <span class="number">2</span>;</span><br><span class="line">                                cnt[<span class="number">1</span>] -= x;</span><br><span class="line">                                cnt[<span class="number">1</span>] -= y * <span class="number">2</span>;</span><br><span class="line">                                cnt[<span class="number">3</span>] -= d - q - x - y;</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                    cnt[<span class="number">0</span>] -= j * <span class="number">3</span>;</span><br><span class="line">                    cnt[<span class="number">0</span>] -= p;</span><br><span class="line">                    cnt[<span class="number">1</span>] -= p;</span><br><span class="line">                    cnt[<span class="number">2</span>] -= c - j - p;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            cnt[<span class="number">0</span>] -= i * <span class="number">2</span>;</span><br><span class="line">            cnt[<span class="number">1</span>] -= b - i;</span><br><span class="line">        &#125;</span><br><span class="line">        cout &lt;&lt; ans &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>题目来源：<a target="_blank" rel="noopener" href="https://acm.hdu.edu.cn/contest/problems?cid=1176">2025“钉耙编程”中国大学生算法设计暑期联赛（5）</a> 1005</p>
+<blockquote>
+<p>[!note]- 完整版题面<br>Kagari 最近沉迷一个叫做四角洲行动的游戏，这游戏里面有一个掘金模式，具体内容就是在游戏地图上寻找各种材料，并放在背包和胸挂等装备的格子里带出。不同材料有不同的大小和价值，同样背包、胸挂、口袋等不同装备也有各自的容量。  </p>
+<p>当然在这个游戏里面，每个人都希望自己带出去的材料的总价值最大，但由于材料的大小和价值实在太多了，Kagari 实在算不出来带哪些材料才能获得最大价值。具体的，这个游戏中总共有四种形状大小的格子：<br>$1 \times 1, \ 1 \times 2, \ 1 \times 3, \ 2 \times 2$。同样，材料的形状也是这四种。材料的放置有如下要求：<br>材料两维的大小不能超过放入的格子的两维大小；<br>不能拆分改变材料的形状，但可以旋转，即交换材料的两维大小；<br>可以将多个材料放入同一个格子，但材料之间不能重叠；<br>格子不需要装满。  </p>
+<p>例如，一个 $1 \times 2$ 的材料和两个 $1 \times 1$ 的材料就可以一起放入一个 $2 \times 2$ 的格子，但此时这个格子不能放入更多的材料了。又例如一个 $1 \times 3$ 的材料不能放入 $2 \times 2$ 大小的格子内，两个 $1 \times 1$ 的材料可以放入一个 $1 \times 3$ 的格子，并且此时还可以再放入一个 $1 \times 1$ 的材料，但不能放入其他大小的材料。<br>现在 Kagari 已经统计好了她身上装备的各种格子的数量，以及已经捡到的所有材料的大小和价值，她希望写一个程序来计算能带出最大的价值。</p>
+</blockquote>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>contraflow</span>
+                    </p>
+                
+                
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E5%89%8D%E7%BC%80%E5%92%8C/"># 前缀和</a>
+                    
+                        <a href="/tags/%E6%9A%B4%E5%8A%9B%E6%9E%9A%E4%B8%BE/"># 暴力枚举</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2025/09/11/25%E6%9D%AD%E7%94%B5%E5%A4%9A%E6%A0%A1%E6%9A%91%E6%9C%9F%E7%AC%AC%E4%BA%94%E5%9C%BA%20-%20%E6%94%AF%E9%85%8D%E6%B8%B8%E6%88%8F%201006/">25杭电多校暑期第五场 - 支配游戏 1006</a>
+            
+            
+            <a class="next" rel="next" href="/2025/09/11/25%E6%9D%AD%E7%94%B5%E5%A4%9A%E6%A0%A1%E6%9A%91%E6%9C%9F%E7%AC%AC%E4%BA%94%E5%9C%BA%20-%20%E4%BF%A1%E8%B5%96%E8%B7%83%E8%BF%81%EF%BC%9A%E7%BD%AE%E6%8D%A2%E8%BD%A8%E8%BF%B9%E8%AE%A1%E7%AE%97%201004/">25杭电多校暑期第五场 - 信赖跃迁：置换轨迹计算 1004</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© contraflow | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>

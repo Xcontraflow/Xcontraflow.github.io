@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="contraflow">
+
+
+
+
+
+<title>25杭电多校暑期第五场 - 支配游戏 1006 | contraflow&#39;s blog</title>
+
+
+
+    <link rel="icon" href="/image/icpc_logo.png">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+    
+
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const pagebody = document.getElementsByTagName('body')[0]
+
+            function setTheme(status) {
+
+                if (status === 'dark') {
+                    window.sessionStorage.theme = 'dark'
+                    pagebody.classList.add('dark-theme');
+
+                } else if (status === 'light') {
+                    window.sessionStorage.theme = 'light'
+                    pagebody.classList.remove('dark-theme');
+                }
+            };
+
+            setTheme(window.sessionStorage.theme)
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">contraflow&#39;s blog</a></div>
+            <div class="menu navbar-right">
+                
+                <a class="menu-item" href="/archives/">Posts</a>
+                
+                <a class="menu-item" href="/categories/">Categories</a>
+                
+                <a class="menu-item" href="/tags/">Tags</a>
+                
+                <a class="menu-item" href="/about/">About</a>
+                
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">contraflow&#39;s blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">
+                    <svg class="menu-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M4.5 17.27q-.213 0-.356-.145T4 16.768t.144-.356t.356-.143h15q.213 0 .356.144q.144.144.144.357t-.144.356t-.356.143zm0-4.77q-.213 0-.356-.144T4 11.999t.144-.356t.356-.143h15q.213 0 .356.144t.144.357t-.144.356t-.356.143zm0-4.77q-.213 0-.356-.143Q4 7.443 4 7.23t.144-.356t.356-.143h15q.213 0 .356.144T20 7.23t-.144.356t-.356.144z"/></svg>
+                    <svg class="close-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Material Symbols Light by Google - https://github.com/google/material-design-icons/blob/master/LICENSE --><path fill="currentColor" d="m12 12.708l-5.246 5.246q-.14.14-.344.15t-.364-.15t-.16-.354t.16-.354L11.292 12L6.046 6.754q-.14-.14-.15-.344t.15-.364t.354-.16t.354.16L12 11.292l5.246-5.246q.14-.14.345-.15q.203-.01.363.15t.16.354t-.16.354L12.708 12l5.246 5.246q.14.14.15.345q.01.203-.15.363t-.354.16t-.354-.16z"/></svg>
+                </div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                <a class="menu-item" href="/archives/">Posts</a>
+                
+                <a class="menu-item" href="/categories/">Categories</a>
+                
+                <a class="menu-item" href="/tags/">Tags</a>
+                
+                <a class="menu-item" href="/about/">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if (toggleMenu.classList.contains("active")) {
+            toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        } else {
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    var tocbot_timer;
+    var DEPTH_MAX = 6; // 为 6 时展开所有
+    var tocbot_default_config = {
+        tocSelector: '.tocbot-list',
+        contentSelector: '.post-content',
+        headingSelector: 'h1, h2, h3, h4, h5',
+        orderedList: false,
+        scrollSmooth: true,
+        onClick: extend_click,
+    };
+
+    function extend_click() {
+        clearTimeout(tocbot_timer);
+        tocbot_timer = setTimeout(function() {
+            tocbot.refresh(obj_merge(tocbot_default_config, {
+                hasInnerContainers: true
+            }));
+        }, 420); // 这个值是由 tocbot 源码里定义的 scrollSmoothDuration 得来的
+    }
+
+    document.ready(function() {
+        tocbot.init(obj_merge(tocbot_default_config, {
+            collapseDepth: 1
+        }));
+    });
+
+    function expand_toc() {
+        var b = document.querySelector('.tocbot-toc-expand');
+        var expanded = b.getAttribute('data-expanded');
+        expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
+        tocbot.refresh(obj_merge(tocbot_default_config, {
+            collapseDepth: expanded ? 1 : DEPTH_MAX
+        }));
+        b.innerText = expanded ? 'Expand all' : 'Collapse all';
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function obj_merge(target, source) {
+        for (var item in source) {
+            if (source.hasOwnProperty(item)) {
+                target[item] = source[item];
+            }
+        }
+        return target;
+    }
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">25杭电多校暑期第五场 - 支配游戏 1006</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">contraflow</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">September 11, 2025&nbsp;&nbsp;18:49:36</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E6%9D%AD%E7%94%B5%E5%A4%9A%E6%A0%A1/">杭电多校</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h2 id="题面"><a href="#题面" class="headerlink" title="题面"></a>题面</h2><h4 id="Problem-Description"><a href="#Problem-Description" class="headerlink" title="Problem Description"></a>Problem Description</h4><p>给定一个由若干连通块组成的无向图，任意两个节点间最多只有一条边。每个连通块是<strong>简单路径</strong>或者<strong>简单环</strong>。<br>两个玩家交替在图上选点博弈。每一轮，对应玩家选取一个能够支配至少一个未被支配节点的节点，并将该节点和所有被其支配的节点标记为已支配。<br>（称一个节点 $u$ 支配另一个节点 $v$ 当且仅当 $u$ 和 $v$ 相邻）<br>若当前玩家无法选取节点，则该玩家输掉游戏。现在需要判定先手是否必胜。</p>
+<h4 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h4><p>第一行包含一个整数 $t \ (1 \leq t \leq 10^4)$，表示测试数据的组数。<br>每组测试数据的第一行包含一个整数 $n \ (1 \leq n \leq 100)$，表示该图中连通块的数量。  </p>
+<p>接下来的 $n$ 行，每行描述一个连通块，包含两个整数：  </p>
+<ul>
+<li>$num$ $(2 \leq num \leq 10^{18})$：该连通块中的顶点数量；  </li>
+<li>$is_path \in {0, 1}$：表示该连通块的类型。</li>
+</ul>
+<p>若 <code>is_path = 1</code>，该连通块是一条由 <code>num</code> 个点组成的 <strong>简单路径</strong>。<br>若 <code>is_path = 0</code>，该连通块是一个由 <code>num</code> 个点组成的 <strong>简单环</strong>，其中 $num \geq 3$。  </p>
+<h4 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h4><p>对于每组测试数据，若先手玩家有必胜策略，则输出一行 <code>Yes</code>，否则输出一行 <code>No</code>。</p>
+<blockquote>
+<p>[!Tip]- 官方题解<br>该问题为公平博弈问题，所以考虑采用 <strong>SG 定理</strong>来求解问题</p>
+<p>令 $P_{i,n} \ (n \geq 2, i \in {0,1,2})$ 为长度为 $n$，左右端点中的 $i$ 个端点被支配且其余节点均未被支配的路径，$C_n \ (n \geq 3)$ 为长度为 $n$ 且所有节点均未被支配的环，则通过打表和归纳法可得所有这些图的 SG 值如下所示。  </p>
+<ul>
+<li>当 $i &#x3D; 2$ 时。对于 $n \leq 2$，$SG(P_{2,n}) &#x3D; 0$；对于 $n &gt; 2$ 有<br>$$<br>SG(P_{2,n}) &#x3D; \operatorname{mex}<em>{i&#x3D;1}^{n} \big( SG(P</em>{2,i-1}) \oplus SG(P_{2,n-i}) \big) &#x3D;<br>\begin{cases}<br>2 &amp; n \bmod 4 &#x3D; 0 \<br>3 &amp; n \bmod 4 &#x3D; 1 \<br>0 &amp; n \bmod 4 &#x3D; 2 \<br>1 &amp; n \bmod 4 &#x3D; 3<br>\end{cases}<br>$$</li>
+<li>当 $i &#x3D; 1$ 时。对于 $n \leq 1$，$SG(P_{1,n}) &#x3D; 0$；对于 $n &gt; 1$ 有<br>$$<br>SG(P_{1,n}) &#x3D; \operatorname{mex}<em>{i&#x3D;1}^{n} \big( SG(P</em>{2,i-1}) \oplus SG(P_{1,n-i}) \big) &#x3D;<br>\begin{cases}<br>3 &amp; n \bmod 4 &#x3D; 0 \<br>0 &amp; n \bmod 4 &#x3D; 1 \<br>1 &amp; n \bmod 4 &#x3D; 2 \<br>2 &amp; n \bmod 4 &#x3D; 3<br>\end{cases}<br>$$</li>
+<li>当 $i &#x3D; 0$ 时。对于 $n &#x3D; 3$，$SG(P_{0,n}) &#x3D; 2$；对于 $n \neq 3$ 有<br>$$<br>SG(P_{0,n}) &#x3D; \operatorname{mex}<em>{i&#x3D;1}^{n} \big( SG(P</em>{1,i-1}) \oplus SG(P_{1,n-i}) \big) &#x3D;<br>\begin{cases}<br>0 &amp; n \bmod 4 &#x3D; 0 \<br>1 &amp; n \bmod 4 &#x3D; 1 \<br>1 &amp; n \bmod 4 &#x3D; 2 \<br>3 &amp; n \bmod 4 &#x3D; 3<br>\end{cases}<br>$$</li>
+<li>对于 $n \geq 3$ 有<br>$$<br>SG(C_n) &#x3D; \operatorname{mex}(SG(P_{2,n-1})) &#x3D;<br>\begin{cases}<br>1 &amp; n \bmod 4 &#x3D; 3 \<br>0 &amp; \text{otherwise}<br>\end{cases}<br>$$<br>最后把所有连通块的 SG 值异或起来即可得到整个图的 SG 值。若 SG 值为 $0$，则先手必败；否则先手必胜。</li>
+</ul>
+</blockquote>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>你这道题描述的是：</p>
+<ul>
+<li>图被拆成若干不相交的连通块（要么是简单路径，要么是简单环）</li>
+<li>每一步操作是“选择一个点，并支配至少一个未支配点”</li>
+<li>游戏在所有点都被支配后结束，不能操作的人输<br>这正好是一个公平博弈问题：</li>
+<li>每个连通块就是一个独立的子游戏。</li>
+<li>整个游戏的局面就是这些子游戏的“和”<br>所以:</li>
+<li>我们需要给每个子游戏（路径or环）求出它的SG值。</li>
+<li>最后把所有连通块的SG值做异或和。</li>
+<li>如果结果&#x3D;0，说明先手必败；否则先手必胜。</li>
+</ul>
+<h4 id="SG函数"><a href="#SG函数" class="headerlink" title="SG函数"></a>SG函数</h4><p>所有 Sprague–Grundy 定理里的 SG 函数，都按照这一定义：<br>$$<br>SG(x)&#x3D;mex{SG(y)\mid y\text{ 是从状态 }x\text{ 走一步能到达的状态 }}<br>$$</p>
+<p>$x$ 为当前局面，$y$ 为 $x$ 走一步之后的后继状态<br>$mex$（minimal excludant）：集合里没有出现过的最小非负整数</p>
+<blockquote>
+<p>[!Tip]- 例子</p>
+<h5 id="Nim-游戏，石子堆大小为-n"><a href="#Nim-游戏，石子堆大小为-n" class="headerlink" title="Nim 游戏，石子堆大小为 $n$"></a>Nim 游戏，石子堆大小为 $n$</h5><ul>
+<li>能走到的状态就是拿掉若干石子后的堆：$n-1, n-2, \dots, 0$。  </li>
+<li>所以：$SG(n) &#x3D; \operatorname{mex}{ SG(0), SG(1), \dots, SG(n-1) }$</li>
+<li>递推下去会发现 $SG(n) &#x3D; n$</li>
+</ul>
+<h5 id="取石子游戏：每次只能取-1-或-2-个"><a href="#取石子游戏：每次只能取-1-或-2-个" class="headerlink" title="取石子游戏：每次只能取 1 或 2 个"></a>取石子游戏：每次只能取 1 或 2 个</h5><ul>
+<li>状态 $n$：堆里有 $n$ 个石子。  </li>
+<li>可走：到 $n-1$ 或 $n-2$。  </li>
+<li>所以：$SG(n) &#x3D; \operatorname{mex}{ SG(n-1), SG(n-2) }$</li>
+<li>算出来的 SG 序列是周期性的：$0, 1, 2, 0, 1, 2, \dots$</li>
+</ul>
+</blockquote>
+<h4 id="为什么一次落子会变成“两个子游戏的异或”"><a href="#为什么一次落子会变成“两个子游戏的异或”" class="headerlink" title="为什么一次落子会变成“两个子游戏的异或”"></a>为什么一次落子会变成“两个子游戏的异或”</h4><p>在 $P_{2,n}$ 里你能下的只有 <strong>中间的尚未被支配的点</strong>，假设你选择了从左数第 $i$ 个点：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">（左端已支配） ● — o — o — ... — <span class="selector-attr">[选中]</span> — ... — o — o — ● （右端已支配）</span><br><span class="line">                  ←—— <span class="selector-tag">i</span>-<span class="number">1</span> 个 ——→    ←—— n-<span class="selector-tag">i</span> 个 ——→</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>这一手把第 $i$ 个点“选中&#x2F;支配”。根据支配博弈的语义，这个被选中的点会把它 <strong>相邻的点也一并标记已支配</strong>（它们之后都不可再选）。  </li>
+<li>于是整条路径被“切”成 <strong>左右两个互不干扰的段</strong>：左侧包含原来的前 $i-1$ 个点，右侧包含后 $n-i$ 个点。  </li>
+<li>更关键的是：这两个段的 <strong>两端现在都已被支配</strong>：  <ul>
+<li>左段的左端本来就被支配；左段靠近切口的那端因为邻着被选中的点，也被支配；  </li>
+<li>右段同理。</li>
+</ul>
+</li>
+<li>所以左右两段都变成了 <strong>同类状态</strong>：$P_{2,i-1}$ 和 $P_{2,n-i}$</li>
+</ul>
+<p>独立子游戏的 SG 值相加用的是 <strong>Nim 和</strong>，也就是异或：$SG &#x3D; SG(P_{2,i-1}) \oplus SG(P_{2,n-i})$</p>
+<h4 id="为什么要对所有-i-取-mathrm-mex"><a href="#为什么要对所有-i-取-mathrm-mex" class="headerlink" title="为什么要对所有 $i$ 取 $\mathrm{mex}$"></a>为什么要对所有 $i$ 取 $\mathrm{mex}$</h4><p>SG 的定义是：**当前局面的 SG 值 &#x3D; 你所有可走一步之后到达局面的 SG 值集合的 $\mathrm{mex}$**。  </p>
+<p>可走的一步就是“在某个位置 $i$ 落子”，所以把所有可能的 $i$ 产生的结果（也就是上面那个异或）收集起来，取 $\mathrm{mex}$，就得到当前 $P_{2,n}$ 的 SG 值。<br>（严格一点，能落的位置其实是 <strong>内点</strong>（端点已被支配，不能选），所以严格应是 $i \in [2, n-1]$）  </p>
+<h4 id="演化过程："><a href="#演化过程：" class="headerlink" title="演化过程："></a>演化过程：</h4><p>我们以路径、且左右两边被支配为例：<br>$$<br>SG(P_{2,n}) &#x3D; \operatorname{mex}{ SG(P_{2,i-1}) \oplus SG(P_{2,n-i}) \mid 1 \leq i \leq n }.<br>$$</p>
+<p><strong>初始条件：</strong></p>
+<ul>
+<li>$SG(P_{2,0}) &#x3D; 0$ （空路径，必败）  </li>
+<li>$SG(P_{2,1}) &#x3D; 0$ （一个点且是端点 $\Rightarrow$ 已支配，不能再走）  </li>
+<li>$SG(P_{2,2}) &#x3D; 0$ （两个端点已支配 $\Rightarrow$ 没有剩余点）</li>
+</ul>
+<p><strong>计算：</strong></p>
+<ul>
+<li><p><strong>$n&#x3D;3$</strong>  </p>
+<ul>
+<li>可选点只有中间 1 个，左右两边都是 $P_{2,1}$，$SG&#x3D;0$  </li>
+<li>所以集合 &#x3D; ${0 \oplus 0} &#x3D; {0}$  </li>
+<li>$\operatorname{mex}{0} &#x3D; 1$  </li>
+<li>$\Rightarrow SG(3) &#x3D; 1$</li>
+</ul>
+</li>
+<li><p><strong>$n&#x3D;4$</strong>  </p>
+<ul>
+<li>可能的切法：  <ul>
+<li>$i&#x3D;2 \Rightarrow (P_{2,1} \oplus P_{2,2}) &#x3D; 0 \oplus 0 &#x3D; 0$  </li>
+<li>$i&#x3D;3 \Rightarrow (P_{2,2} \oplus P_{2,1}) &#x3D; 0 \oplus 0 &#x3D; 0$</li>
+</ul>
+</li>
+<li>集合 &#x3D; ${0}$  </li>
+<li>$\operatorname{mex}{0} &#x3D; 1$  </li>
+<li>$\Rightarrow SG(4) &#x3D; 1$</li>
+</ul>
+</li>
+<li><p><strong>$n&#x3D;5$</strong>  </p>
+<ul>
+<li>$i&#x3D;2 \Rightarrow (P_{2,1} \oplus P_{2,3}) &#x3D; 0 \oplus 1 &#x3D; 1$  </li>
+<li>$i&#x3D;3 \Rightarrow (P_{2,2} \oplus P_{2,2}) &#x3D; 0 \oplus 0 &#x3D; 0$  </li>
+<li>$i&#x3D;4 \Rightarrow (P_{2,3} \oplus P_{2,1}) &#x3D; 1 \oplus 0 &#x3D; 1$  </li>
+<li>集合 &#x3D; ${0,1}$  </li>
+<li>$\operatorname{mex}{0,1} &#x3D; 2$  </li>
+<li>$\Rightarrow SG(5) &#x3D; 2$</li>
+</ul>
+</li>
+<li><p><strong>$n&#x3D;6$</strong>  </p>
+<ul>
+<li>类似操作，得到集合 &#x3D; ${1,2}$  </li>
+<li>$\operatorname{mex}{1,2} &#x3D; 0$  </li>
+<li>$\Rightarrow SG(6) &#x3D; 0$</li>
+</ul>
+</li>
+<li><p><strong>$n&#x3D;7$</strong>  </p>
+<ul>
+<li>集合 &#x3D; ${0,2}$  </li>
+<li>$\operatorname{mex}{0,2} &#x3D; 1$  </li>
+<li>$\Rightarrow SG(7) &#x3D; 1$<br>你会发现：<strong>结果开始循环了</strong></li>
+</ul>
+</li>
+</ul>
+<p>将循环归纳，可以得到，对于 $n&gt;2$，有：<br>$$<br>\mathrm{SG}(P_{2,n})&#x3D;\mathrm{mex}<em>{i&#x3D;1}^n(\mathrm{SG}(P</em>{2,i-1})\oplus\mathrm{SG}(P_{2,n-i}))&#x3D;\begin{cases}2&amp;n\mathrm{<del>mod</del>}4&#x3D;0\3&amp;n\mathrm{<del>mod</del>}4&#x3D;1\0&amp;n\mathrm{<del>mod</del>}4&#x3D;2\1&amp;n\mathrm{<del>mod</del>}4&#x3D;3&amp;\end{cases}<br>$$<br>其余的结论也是通过找到周期之后归纳得来</p>
+<p>详细思路在 <a target="_blank" rel="noopener" href="https://chatgpt.com/share/68c2c26c-f2cc-8003-810b-8ec51e547c24">和gpt的对话</a> 中记录的很清楚</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> int long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> endl <span class="string">&#x27;\n&#x27;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">SG</span><span class="params">(<span class="type">int</span> n, <span class="type">int</span> path)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(path)&#123;</span><br><span class="line">        <span class="keyword">if</span>(n == <span class="number">3</span>)  <span class="keyword">return</span> <span class="number">2</span>;       <span class="comment">//如果是3点且两边无支配的路径，</span></span><br><span class="line">        <span class="keyword">switch</span> (n % <span class="number">4</span>) &#123;        <span class="comment">//以4为周期的规律</span></span><br><span class="line">        <span class="keyword">case</span> <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">3</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (n % <span class="number">4</span> == <span class="number">3</span> || n == <span class="number">2</span>) &#123; <span class="comment">//在环的情况下只有mod 4余3的情况能赢，其余均输 </span></span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    ios::<span class="built_in">sync_with_stdio</span>(<span class="literal">false</span>);</span><br><span class="line">    cin.<span class="built_in">tie</span>(<span class="number">0</span>),cout.<span class="built_in">tie</span>(<span class="number">0</span>);</span><br><span class="line">    <span class="type">int</span> T;</span><br><span class="line">    cin &gt;&gt; T;</span><br><span class="line">    <span class="keyword">while</span>(T--)&#123;</span><br><span class="line">        <span class="type">int</span> n;</span><br><span class="line">        cin &gt;&gt; n;</span><br><span class="line">        <span class="type">int</span> re = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(n--)&#123;</span><br><span class="line">            <span class="type">int</span> a, b;</span><br><span class="line">            cin &gt;&gt; a &gt;&gt; b;</span><br><span class="line">            re ^= <span class="built_in">SG</span>(a, b); <span class="comment">//每个联通块都是一个石子堆，需要我们对所有联通块的SG值做异或</span></span><br><span class="line">        &#125;</span><br><span class="line">        cout &lt;&lt; (re ? <span class="string">&quot;Yes&quot;</span> : <span class="string">&quot;No&quot;</span>) &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p><strong>路径</strong>：一系列顶点 $v_1, v_2, \dots, v_k$，相邻顶点之间都有边相连<br><strong>简单路径</strong>：没有重复顶点的路径（直线型）<br><strong>简单环</strong>：一个闭合路径（首尾相同），除了起点和终点外，不允许有重复的顶点或边</p>
+<p>题目来源：<a target="_blank" rel="noopener" href="https://acm.hdu.edu.cn/contest/problems?cid=1176">2025“钉耙编程”中国大学生算法设计暑期联赛（5）</a> 1006</p>
+<blockquote>
+<p>[!note]- 完整版题面<br>两个玩家在一张无向图上进行博弈，任意两个节点之间最多一条边相连。这张图由若干个 <strong>互不相交</strong> 的连通块组成，每个连通块要么是一条 <strong>简单路径</strong>，要么是一个 <strong>简单环</strong><br>在游戏中，两个玩家轮流行动。在每一轮中，当前玩家必须选择一个顶点 $u$，该顶点需 <strong>能支配</strong> 至少一个 <strong>未被支配</strong> 的顶点。注意，该顶点本身并不要求是未被支配的。一个顶点 $u$ 能够支配它自己以及所有与它相邻的顶点。<br>当某个顶点被选中后，它以及所有被其支配的顶点都会被标记为 <strong>已支配</strong>。<br>若某位玩家在其回合无法进行操作（即没有可以支配未被支配顶点的顶点可选），则该玩家输掉游戏。  </p>
+<p>请判断，在双方都采取最优策略的前提下，<strong>先手玩家是否必胜</strong>。  </p>
+</blockquote>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>contraflow</span>
+                    </p>
+                
+                
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/"># 博弈论</a>
+                    
+                        <a href="/tags/SG%E5%87%BD%E6%95%B0/"># SG函数</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2025/09/11/25%E6%9D%AD%E7%94%B5%E5%A4%9A%E6%A0%A1%E6%9A%91%E6%9C%9F%E7%AC%AC%E4%BA%94%E5%9C%BA%20-%20%E5%9B%9B%E8%A7%92%E6%B4%B2%E8%A1%8C%E5%8A%A8%201005/">25杭电多校暑期第五场 - 四角洲行动 1005</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© contraflow | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>

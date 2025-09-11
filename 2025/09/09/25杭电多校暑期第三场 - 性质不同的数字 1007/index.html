@@ -272,7 +272,7 @@
 <li>第一行包含一个整数 $n$，表示集合的数量 ($0 \leq n \leq 200000$)。</li>
 <li>接下来 $n$ 行，每行包含两个整数 $l$ 和 $r$，表示集合的范围 ($0 \leq l \leq r \leq 10^9$)。<br>保证所有测试样例的总和不超过 $10^6$。</li>
 </ul>
-<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><p>对于每组测试样例，输出一个整数，表示数轴上最多可以选出多少个性质两两不同的数的数量。</p>
+<h4 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h4><p>对于每组测试样例，输出一个整数，表示数轴上最多可以选出多少个性质两两不同的数的数量。</p>
 <h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>题目的意思是说，他所给出的一段一段的“集合”，将整个数轴分成了很多个不一样属性的部分（每多一个集合就多是不同属性），类似于在一个平面上，往上面叠不同颜色的被子，每个位置只要被子数量或者颜色不同，那么就属于不同属性，问最后一共有几种属性</p>
 <p>如第二个案例中的属性不同的个数为 6 ，分别为：<code>(-w,0)+(13,+w)</code>、<code>[0,4)</code>、<code>[4.6)</code>、<code>[6,12)</code>、<code>12</code>、<code>(12,13]</code></p>
 <p>如何保存这个状态，在另一个状态结束后又重新回到原状态，是最难的点——<strong>异或 + 前缀和</strong></p>
@@ -310,13 +310,13 @@
                 <span class="tag">
                     
                     
-                        <a href="/tags/%E5%BC%82%E6%88%96/"># 异或</a>
-                    
                         <a href="/tags/%E9%9A%8F%E6%9C%BA%E5%8C%96/"># 随机化</a>
                     
                         <a href="/tags/%E5%B7%AE%E5%88%86/"># 差分</a>
                     
                         <a href="/tags/%E7%A6%BB%E6%95%A3%E5%8C%96/"># 离散化</a>
+                    
+                        <a href="/tags/%E5%BC%82%E6%88%96/"># 异或</a>
                     
                         
                 </span>
