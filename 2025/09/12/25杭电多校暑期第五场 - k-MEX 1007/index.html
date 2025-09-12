@@ -284,7 +284,7 @@
 <p>而 $[P(i)+P(i+1)+\cdots+P(k)]$ 其实就是 $\Pr[MEX\geq i]$<br>（有 $\Pr[MEX &#x3D; i] &#x3D; P(i)$）</p>
 <p>所以 $\sum_{i&#x3D;1}^ki\cdot P(i)&#x3D;\sum_{i&#x3D;1}^k\Pr[MEX\geq i]$</p>
 <p>而 $\Pr[MEX\geq i]$ 即为 $MEX \geq i$ 的情况除以 所有的方案数</p>
-<p>![[Pasted image 20250912084219.png]]</p>
+<p><img src="/../images/Pasted%20image%2020250912084219.png"></p>
 <p>所以，所求即为：<br>$$<br>\sum_{i&#x3D;1}^k\frac{\binom{n-i}{k-i}}{\binom nk}<br>$$</p>
 <p>经过题解里的化简可以得到最后的结果为 $\frac k{n-k+1}$</p>
 <p>化简部分用到的原理本质是 <strong>杨辉三角恒等式</strong>：<br>$$<br>\binom rr+\binom{r+1}r+\binom{r+2}r+\cdots+\binom nr&#x3D;\binom{n+1}{r+1}<br>$$<br>对应的一步一步，是 <strong>帕斯卡恒等式</strong>：<br>$$<br>\binom ab+\binom a{b+1}&#x3D;\binom{a+1}{b+1}<br>$$</p>
