@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="contraflow">
+
+
+
+
+
+<title>25杭电多校暑期第五场 - k-MEX 1007 | contraflow&#39;s blog</title>
+
+
+
+    <link rel="icon" href="/image/icpc_logo.png">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+    
+
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const pagebody = document.getElementsByTagName('body')[0]
+
+            function setTheme(status) {
+
+                if (status === 'dark') {
+                    window.sessionStorage.theme = 'dark'
+                    pagebody.classList.add('dark-theme');
+
+                } else if (status === 'light') {
+                    window.sessionStorage.theme = 'light'
+                    pagebody.classList.remove('dark-theme');
+                }
+            };
+
+            setTheme(window.sessionStorage.theme)
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">contraflow&#39;s blog</a></div>
+            <div class="menu navbar-right">
+                
+                <a class="menu-item" href="/archives/">Posts</a>
+                
+                <a class="menu-item" href="/categories/">Categories</a>
+                
+                <a class="menu-item" href="/tags/">Tags</a>
+                
+                <a class="menu-item" href="/about/">About</a>
+                
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">contraflow&#39;s blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">
+                    <svg class="menu-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M4.5 17.27q-.213 0-.356-.145T4 16.768t.144-.356t.356-.143h15q.213 0 .356.144q.144.144.144.357t-.144.356t-.356.143zm0-4.77q-.213 0-.356-.144T4 11.999t.144-.356t.356-.143h15q.213 0 .356.144t.144.357t-.144.356t-.356.143zm0-4.77q-.213 0-.356-.143Q4 7.443 4 7.23t.144-.356t.356-.143h15q.213 0 .356.144T20 7.23t-.144.356t-.356.144z"/></svg>
+                    <svg class="close-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Material Symbols Light by Google - https://github.com/google/material-design-icons/blob/master/LICENSE --><path fill="currentColor" d="m12 12.708l-5.246 5.246q-.14.14-.344.15t-.364-.15t-.16-.354t.16-.354L11.292 12L6.046 6.754q-.14-.14-.15-.344t.15-.364t.354-.16t.354.16L12 11.292l5.246-5.246q.14-.14.345-.15q.203-.01.363.15t.16.354t-.16.354L12.708 12l5.246 5.246q.14.14.15.345q.01.203-.15.363t-.354.16t-.354-.16z"/></svg>
+                </div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                <a class="menu-item" href="/archives/">Posts</a>
+                
+                <a class="menu-item" href="/categories/">Categories</a>
+                
+                <a class="menu-item" href="/tags/">Tags</a>
+                
+                <a class="menu-item" href="/about/">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if (toggleMenu.classList.contains("active")) {
+            toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        } else {
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    var tocbot_timer;
+    var DEPTH_MAX = 6; // 为 6 时展开所有
+    var tocbot_default_config = {
+        tocSelector: '.tocbot-list',
+        contentSelector: '.post-content',
+        headingSelector: 'h1, h2, h3, h4, h5',
+        orderedList: false,
+        scrollSmooth: true,
+        onClick: extend_click,
+    };
+
+    function extend_click() {
+        clearTimeout(tocbot_timer);
+        tocbot_timer = setTimeout(function() {
+            tocbot.refresh(obj_merge(tocbot_default_config, {
+                hasInnerContainers: true
+            }));
+        }, 420); // 这个值是由 tocbot 源码里定义的 scrollSmoothDuration 得来的
+    }
+
+    document.ready(function() {
+        tocbot.init(obj_merge(tocbot_default_config, {
+            collapseDepth: 1
+        }));
+    });
+
+    function expand_toc() {
+        var b = document.querySelector('.tocbot-toc-expand');
+        var expanded = b.getAttribute('data-expanded');
+        expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
+        tocbot.refresh(obj_merge(tocbot_default_config, {
+            collapseDepth: expanded ? 1 : DEPTH_MAX
+        }));
+        b.innerText = expanded ? 'Expand all' : 'Collapse all';
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function obj_merge(target, source) {
+        for (var item in source) {
+            if (source.hasOwnProperty(item)) {
+                target[item] = source[item];
+            }
+        }
+        return target;
+    }
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">25杭电多校暑期第五场 - k-MEX 1007</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">contraflow</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">September 12, 2025&nbsp;&nbsp;7:52:34</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E6%9D%AD%E7%94%B5%E5%A4%9A%E6%A0%A1/">杭电多校</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h2 id="题面"><a href="#题面" class="headerlink" title="题面"></a>题面</h2><h4 id="Problem-Description"><a href="#Problem-Description" class="headerlink" title="Problem Description"></a>Problem Description</h4><p>给出两个正整数 $n, k$。你需要计算：从 $0, 1, \dots, n-1$ 这 $n$ 个整数中随机选择 $k$ 个不同的整数，组成的集合的 $\mathrm{MEX}$ 的期望是多少？<br>可以证明答案为一个有理分数 $\frac{x}{y}$，你需要输出这个分数对 $10^9 + 7$ 取模后的结果。  </p>
+<p>$\mathrm{MEX}$ 表示集合内最小的未出现的自然数，例如：  </p>
+<ul>
+<li>$\mathrm{MEX}({1, 0, 2, 4}) &#x3D; 3$  </li>
+<li>$\mathrm{MEX}({1, 2, 3, 4}) &#x3D; 0$</li>
+</ul>
+<h4 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h4><ul>
+<li>第一行一个正整数 $T \ (1 \leq T \leq 10^4 + 7)$，表示数据组数。  </li>
+<li>对于每一组数据，输入两个正整数 $n, k \ (1 \leq k \leq n \leq 10^9)$。</li>
+</ul>
+<h4 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h4><p>对于每一组数据，输出一行一个整数，表示期望 $\mathrm{MEX}$ 对 $10^9 + 7$ 取模后的结果。</p>
+<blockquote>
+<p>[!Tip]- 官方题解<br>![[Pasted image 20250912083605.png]]<br>![[Pasted image 20250912083014.png]]</p>
+</blockquote>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>对于 $\sum_{i&#x3D;1}^ki\cdot P(i)&#x3D;P(1)+(P(2)+P(2))+(P(3)+P(3))+\cdots+(P(k)+\cdots+P(k))$</p>
+<p>可以写成：$\sum_{i&#x3D;1}^ki\cdot P(i)&#x3D;[P(1)+P(2)+\cdots+P(k)]+[P(2)+\cdots+P(k)] + \cdots + [P(k)]$</p>
+<p>而 $[P(i)+P(i+1)+\cdots+P(k)]$ 其实就是 $\Pr[MEX\geq i]$<br>（有 $\Pr[MEX &#x3D; i] &#x3D; P(i)$）</p>
+<p>所以 $\sum_{i&#x3D;1}^ki\cdot P(i)&#x3D;\sum_{i&#x3D;1}^k\Pr[MEX\geq i]$</p>
+<p>而 $\Pr[MEX\geq i]$ 即为 $MEX \geq i$ 的情况除以 所有的方案数</p>
+<p>![[Pasted image 20250912084219.png]]</p>
+<p>所以，所求即为：<br>$$<br>\sum_{i&#x3D;1}^k\frac{\binom{n-i}{k-i}}{\binom nk}<br>$$</p>
+<p>经过题解里的化简可以得到最后的结果为 $\frac k{n-k+1}$</p>
+<p>化简部分用到的原理本质是 <strong>杨辉三角恒等式</strong>：<br>$$<br>\binom rr+\binom{r+1}r+\binom{r+2}r+\cdots+\binom nr&#x3D;\binom{n+1}{r+1}<br>$$<br>对应的一步一步，是 <strong>帕斯卡恒等式</strong>：<br>$$<br>\binom ab+\binom a{b+1}&#x3D;\binom{a+1}{b+1}<br>$$</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> int long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> endl <span class="string">&#x27;\n&#x27;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> mod = <span class="number">1e9</span> + <span class="number">7</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">fp</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> e, <span class="type">int</span> m)</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> re = <span class="number">1</span>;</span><br><span class="line">    a %= m;</span><br><span class="line">    <span class="keyword">while</span>(e)&#123;</span><br><span class="line">        <span class="keyword">if</span>(e &amp; <span class="number">1</span>)&#123;</span><br><span class="line">            re = (re * a) % m;</span><br><span class="line">        &#125;</span><br><span class="line">        e &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">        a = a * a % m;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> re;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    ios::<span class="built_in">sync_with_stdio</span>(<span class="literal">false</span>);</span><br><span class="line">    cin.<span class="built_in">tie</span>(<span class="number">0</span>),cout.<span class="built_in">tie</span>(<span class="number">0</span>);</span><br><span class="line">    <span class="type">int</span> T;</span><br><span class="line">    cin &gt;&gt; T;</span><br><span class="line">    <span class="keyword">while</span>(T--)&#123;</span><br><span class="line">        <span class="type">int</span> n, k;</span><br><span class="line">        cin &gt;&gt; n &gt;&gt; k;</span><br><span class="line">        cout &lt;&lt; <span class="function">k * <span class="title">fp</span><span class="params">(n - k + <span class="number">1</span>, mod - <span class="number">2</span>, mod)</span>  % mod &lt;&lt; endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>题目来源：<a target="_blank" rel="noopener" href="https://acm.hdu.edu.cn/contest/problems?cid=1176">2025“钉耙编程”中国大学生算法设计暑期联赛（5）</a> 1007</p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>contraflow</span>
+                    </p>
+                
+                
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E6%95%B0%E5%AD%A6/"># 数学</a>
+                    
+                        <a href="/tags/%E7%BB%84%E5%90%88%E6%95%B0%E5%AD%A6/"># 组合数学</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2025/09/11/25%E6%9D%AD%E7%94%B5%E5%A4%9A%E6%A0%A1%E6%9A%91%E6%9C%9F%E7%AC%AC%E4%BA%94%E5%9C%BA%20-%20%E6%94%AF%E9%85%8D%E6%B8%B8%E6%88%8F%201006/">25杭电多校暑期第五场 - 支配游戏 1006</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© contraflow | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
