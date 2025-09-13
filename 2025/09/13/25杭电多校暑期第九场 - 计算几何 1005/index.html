@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="contraflow">
+
+
+
+
+
+<title>25杭电多校暑期第九场 - 计算几何 1005 | contraflow&#39;s blog</title>
+
+
+
+    <link rel="icon" href="/image/icpc_logo.png">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+    
+
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const pagebody = document.getElementsByTagName('body')[0]
+
+            function setTheme(status) {
+
+                if (status === 'dark') {
+                    window.sessionStorage.theme = 'dark'
+                    pagebody.classList.add('dark-theme');
+
+                } else if (status === 'light') {
+                    window.sessionStorage.theme = 'light'
+                    pagebody.classList.remove('dark-theme');
+                }
+            };
+
+            setTheme(window.sessionStorage.theme)
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">contraflow&#39;s blog</a></div>
+            <div class="menu navbar-right">
+                
+                <a class="menu-item" href="/archives/">Posts</a>
+                
+                <a class="menu-item" href="/categories/">Categories</a>
+                
+                <a class="menu-item" href="/tags/">Tags</a>
+                
+                <a class="menu-item" href="/about/">About</a>
+                
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">contraflow&#39;s blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">
+                    <svg class="menu-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M4.5 17.27q-.213 0-.356-.145T4 16.768t.144-.356t.356-.143h15q.213 0 .356.144q.144.144.144.357t-.144.356t-.356.143zm0-4.77q-.213 0-.356-.144T4 11.999t.144-.356t.356-.143h15q.213 0 .356.144t.144.357t-.144.356t-.356.143zm0-4.77q-.213 0-.356-.143Q4 7.443 4 7.23t.144-.356t.356-.143h15q.213 0 .356.144T20 7.23t-.144.356t-.356.144z"/></svg>
+                    <svg class="close-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Material Symbols Light by Google - https://github.com/google/material-design-icons/blob/master/LICENSE --><path fill="currentColor" d="m12 12.708l-5.246 5.246q-.14.14-.344.15t-.364-.15t-.16-.354t.16-.354L11.292 12L6.046 6.754q-.14-.14-.15-.344t.15-.364t.354-.16t.354.16L12 11.292l5.246-5.246q.14-.14.345-.15q.203-.01.363.15t.16.354t-.16.354L12.708 12l5.246 5.246q.14.14.15.345q.01.203-.15.363t-.354.16t-.354-.16z"/></svg>
+                </div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                <a class="menu-item" href="/archives/">Posts</a>
+                
+                <a class="menu-item" href="/categories/">Categories</a>
+                
+                <a class="menu-item" href="/tags/">Tags</a>
+                
+                <a class="menu-item" href="/about/">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if (toggleMenu.classList.contains("active")) {
+            toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        } else {
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    var tocbot_timer;
+    var DEPTH_MAX = 6; // 为 6 时展开所有
+    var tocbot_default_config = {
+        tocSelector: '.tocbot-list',
+        contentSelector: '.post-content',
+        headingSelector: 'h1, h2, h3, h4, h5',
+        orderedList: false,
+        scrollSmooth: true,
+        onClick: extend_click,
+    };
+
+    function extend_click() {
+        clearTimeout(tocbot_timer);
+        tocbot_timer = setTimeout(function() {
+            tocbot.refresh(obj_merge(tocbot_default_config, {
+                hasInnerContainers: true
+            }));
+        }, 420); // 这个值是由 tocbot 源码里定义的 scrollSmoothDuration 得来的
+    }
+
+    document.ready(function() {
+        tocbot.init(obj_merge(tocbot_default_config, {
+            collapseDepth: 1
+        }));
+    });
+
+    function expand_toc() {
+        var b = document.querySelector('.tocbot-toc-expand');
+        var expanded = b.getAttribute('data-expanded');
+        expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
+        tocbot.refresh(obj_merge(tocbot_default_config, {
+            collapseDepth: expanded ? 1 : DEPTH_MAX
+        }));
+        b.innerText = expanded ? 'Expand all' : 'Collapse all';
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function obj_merge(target, source) {
+        for (var item in source) {
+            if (source.hasOwnProperty(item)) {
+                target[item] = source[item];
+            }
+        }
+        return target;
+    }
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">25杭电多校暑期第九场 - 计算几何 1005</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">contraflow</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">September 13, 2025&nbsp;&nbsp;19:51:07</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E6%9D%AD%E7%94%B5%E5%A4%9A%E6%A0%A1/">杭电多校</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h2 id="题面"><a href="#题面" class="headerlink" title="题面"></a>题面</h2><h4 id="Problem-Description"><a href="#Problem-Description" class="headerlink" title="Problem Description"></a>Problem Description</h4><p>给定一个网格图和一个闭合不自交的折线，问应该如何使用尽可能少的钉子和一条弹性圈来模拟出这条折线。<br>钉子的半径忽略不计。  </p>
+<h4 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h4><p>第一行包含一个正整数 $T$ ($1 \leq T \leq 100$)，表示数据组数。<br>对于每一组数据，第一行包含一个正整数 $n$<br>($3 \leq n \leq 5 \times 10^5, \ \sum n \leq 5 \times 10^5$)，表示折线中的折点的数目。<br>接下来 $n$ 行，每行包含两个整数 $x_i, y_i$<br>($-2 \times 10^9 \leq x_i, y_i \leq 2 \times 10^9$)，表示第 $i$ 个点的坐标（点的编号从 $1$ 到 $n$）。<br>这边的折线指的是：$(x_1, y_1) - (x_2, y_2) - \dots - (x_n, y_n) - (x_1, y_1)$<br>注意：不保证任意三个相邻的点不共线。  </p>
+<h4 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h4><p>对于每一组数据：<br>输出正整数 $k$ 表示至少使用 $k$ 个钉子。<br>然后按照 $x$ 从小到大，$x$ 相同的时候按照 $y$ 从小到大的顺序输出这 $k$ 个钉子的位置。<br>同时输出这个钉子是否被折线“包裹”住。<br>（如果是输出 <code>YES</code>，否则输出 <code>NO</code>）  </p>
+<blockquote>
+<p>我们定义一个点被折线“包裹”住：这个点在这个折线形成的多边形内。</p>
+</blockquote>
+<blockquote>
+<p>[!Tip]- 官方题解<br>大家首先需要意识到，在一条折线的每个拐点处，必须在突出侧内部放置一个钉子，不然的<br>话弹性绳就会收缩使得最终形状不符合预期</p>
+<p>但是由于题目问的是每个点在折线包成的多边形内部还是外部，所以我们还需要判断这些线<br>段的左边是多边形内部还是右边是多边形内部。判断方法可以是去判断折线从开始到最后是<br>顺时针转了一圈（每条线段右边是多边形内部）还是逆时针转了一圈（每条线段左边是多边<br>形内部）</p>
+<p><img src="/../images/Pasted%20image%2020250913212749.png"></p>
+<p><img src="/../images/Pasted%20image%2020250913212827.png"></p>
+<p>我们可以看到，样例一折线是顺时针转了一圈，每条线段右边是多边形内部；样例二折线是<br>逆时针转了一圈，每条线段左边是多边形内部</p>
+</blockquote>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>多边形在当前边的内侧与转向方向一致，那么这个钉子会被包裹；反之不会</p>
+<p><img src="/../images/Pasted%20image%2020250913212458.png"></p>
+<p>如何计算转过的角度？<br>$$<br>\theta&#x3D;\mathrm{atan}2(\vec{A}\times\vec{B},\vec{A}\cdot\vec{B})<br>$$<br>计算差积和点积即可</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> int long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> endl <span class="string">&#x27;\n&#x27;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> db long double</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> M = <span class="number">1e6</span> + <span class="number">7</span>;</span><br><span class="line"><span class="type">const</span> db eps = <span class="number">1e-20</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> n, cnt;</span><br><span class="line">db sum_ang;     <span class="comment">//总共转过角度</span></span><br><span class="line"><span class="type">int</span> x[M], y[M]; <span class="comment">//折线顶点的坐标</span></span><br><span class="line"><span class="type">int</span> dx[M] ,dy[M];   <span class="comment">//钉子坐标</span></span><br><span class="line"><span class="type">int</span> f[M];       <span class="comment">//转向记录</span></span><br><span class="line"><span class="type">int</span> idx[M];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> db <span class="title">ang</span><span class="params">(<span class="type">int</span> x1, <span class="type">int</span> y1, <span class="type">int</span> x2, <span class="type">int</span> y2)</span></span>&#123;      <span class="comment">//计算转动角度</span></span><br><span class="line">    db chaji = (db)x1 * y2 - (db)x2 * y1;</span><br><span class="line">    db dianji = (db)x1 * x2 + (db)y1 * y2;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">atan2</span>(chaji, dianji);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">bool</span> <span class="title">cmp</span><span class="params">(<span class="type">int</span> a,<span class="type">int</span> b)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(dx[a] != dx[b])&#123;</span><br><span class="line">        <span class="keyword">return</span> dx[a] &lt; dx[b];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dy[a] &lt; dy[b];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    ios::<span class="built_in">sync_with_stdio</span>(<span class="literal">false</span>);</span><br><span class="line">    cin.<span class="built_in">tie</span>(<span class="number">0</span>), cout.<span class="built_in">tie</span>(<span class="number">0</span>);</span><br><span class="line">    <span class="type">int</span> T;</span><br><span class="line">    cin &gt;&gt; T;</span><br><span class="line">    <span class="keyword">while</span>(T--)&#123;</span><br><span class="line">        cin &gt;&gt; n;</span><br><span class="line">        cnt = <span class="number">0</span>;</span><br><span class="line">        sum_ang = <span class="number">0.0L</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;</span><br><span class="line">            cin &gt;&gt; x[i] &gt;&gt; y[i];</span><br><span class="line">        &#125;</span><br><span class="line">        x[n + <span class="number">1</span>] = x[<span class="number">1</span>]; y[n + <span class="number">1</span>] = y[<span class="number">1</span>];   <span class="comment">//首位循环</span></span><br><span class="line">        x[n + <span class="number">2</span>] = x[<span class="number">2</span>]; y[n + <span class="number">2</span>] = y[<span class="number">2</span>];   <span class="comment">//一条线两个点</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;        <span class="comment">//计算转过的角度</span></span><br><span class="line">            sum_ang += <span class="built_in">ang</span>(x[i + <span class="number">1</span>] - x[i], y[i + <span class="number">1</span>] - y[i],</span><br><span class="line">                x[i + <span class="number">2</span>] - x[i + <span class="number">1</span>], y[i + <span class="number">2</span>] - y[i + <span class="number">1</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;</span><br><span class="line">            db a = <span class="built_in">ang</span>(x[i + <span class="number">1</span>] - x[i], y[i + <span class="number">1</span>] - y[i], </span><br><span class="line">                x[i + <span class="number">2</span>] - x[i + <span class="number">1</span>], y[i + <span class="number">2</span>] - y[i + <span class="number">1</span>]);</span><br><span class="line">            <span class="keyword">if</span>(a &gt; eps)&#123;</span><br><span class="line">                cnt++;</span><br><span class="line">                dx[cnt] = x[i + <span class="number">1</span>];</span><br><span class="line">                dy[cnt] = y[i + <span class="number">1</span>];</span><br><span class="line">                f[cnt] = <span class="number">1</span>;     <span class="comment">//左转</span></span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(a &lt; -eps)&#123;</span><br><span class="line">                cnt++;</span><br><span class="line">                dx[cnt] = x[i + <span class="number">1</span>];</span><br><span class="line">                dy[cnt] = y[i + <span class="number">1</span>];</span><br><span class="line">                f[cnt] = <span class="number">0</span>;     <span class="comment">//右转</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(sum_ang &lt; <span class="number">0.0L</span>)&#123;     <span class="comment">//如果是顺时针，那么就翻转</span></span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= cnt; i++)&#123;</span><br><span class="line">                f[i] = <span class="number">1</span> - f[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= cnt ; i++)&#123;     <span class="comment">//记录索引</span></span><br><span class="line">            idx[i] = i;</span><br><span class="line">        &#125;</span><br><span class="line">        cout &lt;&lt; cnt &lt;&lt; endl;</span><br><span class="line">        <span class="built_in">sort</span>(idx + <span class="number">1</span>, idx + <span class="number">1</span> + cnt, cmp);  <span class="comment">//排序</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= cnt ;i++)&#123;</span><br><span class="line">            <span class="type">int</span> k = idx[i];</span><br><span class="line">            cout &lt;&lt; dx[k] &lt;&lt; <span class="string">&quot; &quot;</span> &lt;&lt; dy[k] &lt;&lt; <span class="string">&quot; &quot;</span> &lt;&lt; (f[k] ? <span class="string">&quot;YES&quot;</span> : <span class="string">&quot;NO&quot;</span>) &lt;&lt; endl;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p><a target="_blank" rel="noopener" href="https://chatgpt.com/share/68c57040-ee80-8003-804e-171d313b41bd">和gpt的对话</a></p>
+<p>题目来源：<a target="_blank" rel="noopener" href="https://acm.hdu.edu.cn/contest/problems?cid=1180">2025“钉耙编程”中国大学生算法设计暑期联赛（9）</a> 1005</p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>contraflow</span>
+                    </p>
+                
+                
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E6%95%B0%E5%AD%A6/"># 数学</a>
+                    
+                        <a href="/tags/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/"># 计算几何</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2025/09/13/25%E6%9D%AD%E7%94%B5%E5%A4%9A%E6%A0%A1%E6%9A%91%E6%9C%9F%E7%AC%AC%E4%B9%9D%E5%9C%BA%20-%20%E6%8B%AC%E5%8F%B7%E5%8C%B9%E9%85%8D%201006/">25杭电多校暑期第九场 - 括号匹配 1006</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© contraflow | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
