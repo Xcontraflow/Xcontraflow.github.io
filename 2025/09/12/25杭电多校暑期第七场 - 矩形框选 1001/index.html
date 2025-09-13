@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="contraflow">
+
+
+
+
+
+<title>25杭电多校暑期第七场 - 矩形框选 1001 | contraflow&#39;s blog</title>
+
+
+
+    <link rel="icon" href="/image/icpc_logo.png">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+    
+
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const pagebody = document.getElementsByTagName('body')[0]
+
+            function setTheme(status) {
+
+                if (status === 'dark') {
+                    window.sessionStorage.theme = 'dark'
+                    pagebody.classList.add('dark-theme');
+
+                } else if (status === 'light') {
+                    window.sessionStorage.theme = 'light'
+                    pagebody.classList.remove('dark-theme');
+                }
+            };
+
+            setTheme(window.sessionStorage.theme)
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">contraflow&#39;s blog</a></div>
+            <div class="menu navbar-right">
+                
+                <a class="menu-item" href="/archives/">Posts</a>
+                
+                <a class="menu-item" href="/categories/">Categories</a>
+                
+                <a class="menu-item" href="/tags/">Tags</a>
+                
+                <a class="menu-item" href="/about/">About</a>
+                
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">contraflow&#39;s blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">
+                    <svg class="menu-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M4.5 17.27q-.213 0-.356-.145T4 16.768t.144-.356t.356-.143h15q.213 0 .356.144q.144.144.144.357t-.144.356t-.356.143zm0-4.77q-.213 0-.356-.144T4 11.999t.144-.356t.356-.143h15q.213 0 .356.144t.144.357t-.144.356t-.356.143zm0-4.77q-.213 0-.356-.143Q4 7.443 4 7.23t.144-.356t.356-.143h15q.213 0 .356.144T20 7.23t-.144.356t-.356.144z"/></svg>
+                    <svg class="close-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Material Symbols Light by Google - https://github.com/google/material-design-icons/blob/master/LICENSE --><path fill="currentColor" d="m12 12.708l-5.246 5.246q-.14.14-.344.15t-.364-.15t-.16-.354t.16-.354L11.292 12L6.046 6.754q-.14-.14-.15-.344t.15-.364t.354-.16t.354.16L12 11.292l5.246-5.246q.14-.14.345-.15q.203-.01.363.15t.16.354t-.16.354L12.708 12l5.246 5.246q.14.14.15.345q.01.203-.15.363t-.354.16t-.354-.16z"/></svg>
+                </div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                <a class="menu-item" href="/archives/">Posts</a>
+                
+                <a class="menu-item" href="/categories/">Categories</a>
+                
+                <a class="menu-item" href="/tags/">Tags</a>
+                
+                <a class="menu-item" href="/about/">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if (toggleMenu.classList.contains("active")) {
+            toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        } else {
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    var tocbot_timer;
+    var DEPTH_MAX = 6; // 为 6 时展开所有
+    var tocbot_default_config = {
+        tocSelector: '.tocbot-list',
+        contentSelector: '.post-content',
+        headingSelector: 'h1, h2, h3, h4, h5',
+        orderedList: false,
+        scrollSmooth: true,
+        onClick: extend_click,
+    };
+
+    function extend_click() {
+        clearTimeout(tocbot_timer);
+        tocbot_timer = setTimeout(function() {
+            tocbot.refresh(obj_merge(tocbot_default_config, {
+                hasInnerContainers: true
+            }));
+        }, 420); // 这个值是由 tocbot 源码里定义的 scrollSmoothDuration 得来的
+    }
+
+    document.ready(function() {
+        tocbot.init(obj_merge(tocbot_default_config, {
+            collapseDepth: 1
+        }));
+    });
+
+    function expand_toc() {
+        var b = document.querySelector('.tocbot-toc-expand');
+        var expanded = b.getAttribute('data-expanded');
+        expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
+        tocbot.refresh(obj_merge(tocbot_default_config, {
+            collapseDepth: expanded ? 1 : DEPTH_MAX
+        }));
+        b.innerText = expanded ? 'Expand all' : 'Collapse all';
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function obj_merge(target, source) {
+        for (var item in source) {
+            if (source.hasOwnProperty(item)) {
+                target[item] = source[item];
+            }
+        }
+        return target;
+    }
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">25杭电多校暑期第七场 - 矩形框选 1001</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">contraflow</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">September 12, 2025&nbsp;&nbsp;13:25:16</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E6%9D%AD%E7%94%B5%E5%A4%9A%E6%A0%A1/">杭电多校</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h2 id="题面"><a href="#题面" class="headerlink" title="题面"></a>题面</h2><h4 id="Problem-Description"><a href="#Problem-Description" class="headerlink" title="Problem Description"></a>Problem Description</h4><p>在平面上有 $n$ 个点，第 $i$ 个点位于 $(x_i + 0.5, \ y_i + 0.5)$ （$x_i, y_i$ 均为整数），其价值为 $v_i$。<br>请挑选四个整数 $a, b, c, d \ (a &lt; b, \ c &lt; d)$，<br>使得以 $(a, c), (b, c), (a, d), (b, d)$ 为四个顶点的矩形内覆盖的所有点的价值之和最大，<br>且矩形的面积 $(b-a) \times (d-c)$ 不超过 $k$。</p>
+<h4 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h4><p>第一行包含一个正整数 $T \ (1 \leq T \leq 100)$，表示测试数据的组数。<br>每组数据第一行包含两个正整数 $n, k \ (1 \leq n, k \leq 10000)$，<br>分别表示点数以及矩形的面积上限。<br>接下来 $n$ 行，每行三个整数 $x_i, y_i, v_i \ (1 \leq x_i, y_i \leq n, \ 1 \leq v_i \leq 10000)$，<br>分别描述每个点的坐标和价值。<strong>注意，一个位置可能存在多个点。</strong><br>输入数据保证 $\sum n \leq 100000$。</p>
+<h4 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h4><p>对于每组数据输出一行一个整数，表示矩形内覆盖的所有点的价值之和的最大可能值。</p>
+<blockquote>
+<p>[!Tip]- 官方题解<br>Shortest judge solution: 2141 Bytes</p>
+<p>假设选出的矩形尺寸是 $w \times h$，固定 $w$ 后 $h$ 越大越好，因此取 $h &#x3D; \lfloor \tfrac{k}{w} \rfloor$。随着 $w$ 的增大，$h$ 只有 $2\sqrt{k}$ 种不同的取值，数论分块枚举即可。  </p>
+<p>确定矩形的尺寸后，使用 <strong>扫描线算法</strong> 找到和最大的 $w \times h$ 子矩阵：按照横坐标从上到下滑动大小为 $h$ 的窗口，令 $f_i$ 表示纵坐标点 $[i, i+h-1]$ 的窗口内的点的权值和，那么滑动窗口增加删除点时，对 $f$ 的影响是一段区间加或区间减，答案为 $f$ 的全局最大值。  </p>
+<p>不妨设 $w \ge h$，那么 $h \le \sqrt{k}$。此时时间复杂度为 $O(nk)$，常数很小已经可以通过，但可以做得更好。将 $f$ 数组分成 $\tfrac{n}{\sqrt{n}}$ 块，每块大小为 $\sqrt{n}$，对于每一块记录块内 $f$ 的 <strong>历史最大值</strong> $v$，以及整体需要增加的标记值 $tag$。在这里不维护全局最大值，而是维护历史全局最大值。  </p>
+<p>遇到区间加 $p \ (p &gt; 0)$ 的操作时：</p>
+<ul>
+<li>对于中间完整的块，块内最大值 $v$ 需要加上 $p$，并更新历史全局最大值，块标记值 $tag$ 也需要加上 $p$。  </li>
+<li>对于两边零碎的最多两块，暴力修改块内每个元素，并将其值加上块标记值 $tag$ 来更新历史全局最大值。</li>
+</ul>
+<p>遇到区间减 $p \ (p &gt; 0)$ 的操作时：</p>
+<ul>
+<li>对于中间完整的块，块内最大值 $v$ 需要减去 $p$，块标记值 $tag$ 也需要减去 $p$。不需要更新历史全局最大值，因为一定不优。  </li>
+<li>对于两边零碎的最多两块，暴力修改块内每个元素并重新计算块内最大值 $v$。同理也不需要更新历史全局最大值。</li>
+</ul>
+<p>总时间复杂度为 $O\bigl(nk^{\tfrac{3}{4}}\bigr)$</p>
+</blockquote>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>分块 + 懒标记 + 扫描线：实现区间修改 + 查询最大</p>
+<p><a target="_blank" rel="noopener" href="https://chatgpt.com/share/68c4f8f9-8308-8003-9150-53b4026c9113">详情见和gpt的对话</a></p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> int long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> endl <span class="string">&#x27;\n&#x27;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> pii pair<span class="string">&lt;int, int&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">10005</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> re;</span><br><span class="line"><span class="type">int</span> n, s, w ,h;</span><br><span class="line"><span class="type">int</span> at[N], st[N], en[N], val[N], mx[N], lazy[N];    </span><br><span class="line"><span class="comment">//at是位于那个块内，st是这个块的左边（起始坐标），en是右边坐标</span></span><br><span class="line"><span class="comment">//val是当前点的值，mx存放块内元素值的最大值，lazy是懒标记</span></span><br><span class="line">vector&lt;pii&gt; f[N], g[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">umax</span><span class="params">(<span class="type">int</span>&amp; a,<span class="type">int</span> b)</span></span>&#123;a &lt; b ? (a = b) : <span class="number">0</span>;&#125;    <span class="comment">//取大</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">add</span><span class="params">(<span class="type">int</span> l, <span class="type">int</span> r, <span class="type">int</span> v)</span></span>&#123;  <span class="comment">//左右边界和要加的值</span></span><br><span class="line">    <span class="type">int</span> L = at[l], R = at[r];</span><br><span class="line">    <span class="keyword">if</span>(L == R)&#123;     <span class="comment">//如果在同一个块内</span></span><br><span class="line">        <span class="type">int</span> t = mx[L];</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = l ; i &lt;= r; i++)&#123;   <span class="comment">//直接遍历块的每个点</span></span><br><span class="line">            val[i] += v;</span><br><span class="line">            <span class="built_in">umax</span>(t, val[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        mx[L] = t;</span><br><span class="line">        <span class="built_in">umax</span>(re, mx[L] + lazy[L]);  <span class="comment">//加上懒标记</span></span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">int</span> t = mx[L];</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = l; i &lt;= en[L];i++)&#123;     <span class="comment">//遍历左边不完整块</span></span><br><span class="line">        val[i] += v;</span><br><span class="line">        <span class="built_in">umax</span>(t, val[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    mx[L] = t;</span><br><span class="line">    <span class="built_in">umax</span>(re, mx[L] + lazy[L]);</span><br><span class="line"></span><br><span class="line">    t = mx[R];</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = st[R] ; i &lt;= r; i++)&#123;   <span class="comment">//遍历右边不完整块</span></span><br><span class="line">        val[i] += v;</span><br><span class="line">        <span class="built_in">umax</span>(t, val[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    mx[R] = t;</span><br><span class="line">    <span class="built_in">umax</span>(re, mx[R] + lazy[R]);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = L + <span class="number">1</span>; i &lt; R; i++)&#123;     <span class="comment">//对于中间的块直接加上懒标记</span></span><br><span class="line">        lazy[i] += v;</span><br><span class="line">        <span class="built_in">umax</span>(re, mx[i] + lazy[i]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">del</span><span class="params">(<span class="type">int</span> l ,<span class="type">int</span> r, <span class="type">int</span> v)</span></span>&#123;      <span class="comment">//与添加类似，不需要对re取最大值</span></span><br><span class="line">    <span class="type">int</span> L = at[l], R = at[r];</span><br><span class="line">    <span class="keyword">if</span> (L == R) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = l; i &lt;= r; i++) &#123;</span><br><span class="line">            val[i]-= v;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> t = LLONG_MIN;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = st[L]; i &lt;= en[L]; i++)&#123;    <span class="comment">//找到现在的最大值</span></span><br><span class="line">            <span class="built_in">umax</span>(t, val[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        mx[L] = t;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = l; i &lt;= en[L]; i++) &#123;      <span class="comment">//左边减少</span></span><br><span class="line">        val[i] -= v;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">int</span> t = LLONG_MIN;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = st[L]; i &lt;= en[L]; i++)&#123;</span><br><span class="line">        <span class="built_in">umax</span>(t, val[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    mx[L] = t;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = st[R]; i &lt;= r; i++)&#123;        <span class="comment">//右边减少</span></span><br><span class="line">        val[i] -= v;</span><br><span class="line">    &#125;</span><br><span class="line">    t = LLONG_MIN;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = st[R]; i &lt;= en[R]; i++) &#123;  </span><br><span class="line">        <span class="built_in">umax</span>(t, val[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    mx[R] = t;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = L + <span class="number">1</span>; i &lt; R; i++) &#123;   <span class="comment">//中间块减少</span></span><br><span class="line">        lazy[i] -= v;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">saomiao</span><span class="params">(<span class="type">int</span> w, <span class="type">int</span> h, vector&lt;pii&gt; f[])</span></span>&#123;    <span class="comment">//扫描线</span></span><br><span class="line">    <span class="type">int</span> len = <span class="built_in">sqrt</span>(h);  <span class="comment">//块的长度</span></span><br><span class="line">    <span class="built_in">umax</span>(len, <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;    <span class="comment">//确定这个点在那个块内，确定右边界</span></span><br><span class="line">        at[i] = (i - <span class="number">1</span>) / len;</span><br><span class="line">        en[at[i]] = i;</span><br><span class="line">        val[i] = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt;= at[n]; i++)&#123;    <span class="comment">//懒标记和最大值数组清零</span></span><br><span class="line">        lazy[i] = mx[i] = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = n; i &gt; <span class="number">0</span>; i--)&#123;     <span class="comment">//确定左边界</span></span><br><span class="line">        st[at[i]] = i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(i &gt; w)&#123;      <span class="comment">//不再范围内的移除，有点滑动窗口的意思</span></span><br><span class="line">            <span class="keyword">for</span>(<span class="type">const</span> <span class="keyword">auto</span>&amp; it : f[i - w])&#123;</span><br><span class="line">                <span class="built_in">del</span>(it.first, <span class="built_in">min</span>(it.first + h - <span class="number">1</span>, n), it.second);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">const</span> <span class="keyword">auto</span>&amp; it : f[i])&#123;</span><br><span class="line">            <span class="built_in">add</span>(it.first, <span class="built_in">min</span>(it.first + h - <span class="number">1</span>, n), it.second); <span class="comment">//新进范围的增加</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">sv</span><span class="params">(<span class="type">int</span> w, <span class="type">int</span> h)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(w &gt; h)&#123;</span><br><span class="line">        <span class="built_in">saomiao</span>(w, h, f);   <span class="comment">//为加快速度，让区间长度（这里是高h）尽量短</span></span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="built_in">saomiao</span>(h, w, g);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    ios::<span class="built_in">sync_with_stdio</span>(<span class="literal">false</span>);</span><br><span class="line">    cin.<span class="built_in">tie</span>(<span class="number">0</span>),cout.<span class="built_in">tie</span>(<span class="number">0</span>);</span><br><span class="line">    <span class="type">int</span> T;</span><br><span class="line">    cin &gt;&gt; T;</span><br><span class="line">    <span class="keyword">while</span>(T--)&#123;</span><br><span class="line">        cin &gt;&gt; n &gt;&gt; s;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;      <span class="comment">//一定要把原来的点集清空</span></span><br><span class="line">            f[i].<span class="built_in">clear</span>();</span><br><span class="line">            g[i].<span class="built_in">clear</span>();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span> ; i &lt; n; i++)&#123;</span><br><span class="line">            <span class="type">int</span> x, y ,v;</span><br><span class="line">            cin &gt;&gt; x &gt;&gt; y &gt;&gt; v;</span><br><span class="line">            f[x].<span class="built_in">emplace_back</span>(pii&#123;y, v&#125;);   <span class="comment">//从x轴和y轴分别存放点集</span></span><br><span class="line">            g[y].<span class="built_in">emplace_back</span>(pii&#123;x, v&#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        re = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(w = <span class="number">1</span>; w &lt;= n &amp;&amp; w &lt;= s; w++)&#123;  <span class="comment">//宽不超过s，且不超过n</span></span><br><span class="line">            h = <span class="built_in">min</span>(s / w, n);</span><br><span class="line">            w = <span class="built_in">min</span>(s / h, n);</span><br><span class="line">            <span class="built_in">sv</span>(w, h);</span><br><span class="line">        &#125;</span><br><span class="line">        cout &lt;&lt; re &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>题目来源：<a target="_blank" rel="noopener" href="https://acm.hdu.edu.cn/contest/problems?cid=1178">2025“钉耙编程”中国大学生算法设计暑期联赛（7）</a> 1002</p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>contraflow</span>
+                    </p>
+                
+                
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E5%88%86%E5%9D%97/"># 分块</a>
+                    
+                        <a href="/tags/%E6%89%AB%E6%8F%8F%E7%BA%BF/"># 扫描线</a>
+                    
+                        <a href="/tags/%E6%87%92%E6%A0%87%E8%AE%B0/"># 懒标记</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2025/09/12/25%E6%9D%AD%E7%94%B5%E5%A4%9A%E6%A0%A1%E6%9A%91%E6%9C%9F%E7%AC%AC%E4%B8%83%E5%9C%BA%20-%20%E9%BE%99%E6%97%8F%E6%A0%96%E6%81%AF%E5%9C%B0%201002/">25杭电多校暑期第七场 - 龙族栖息地 1002</a>
+            
+            
+            <a class="next" rel="next" href="/2025/09/12/25%E6%9D%AD%E7%94%B5%E5%A4%9A%E6%A0%A1%E6%9A%91%E6%9C%9F%E7%AC%AC%E4%BA%94%E5%9C%BA%20-%20k-MEX%201007/">25杭电多校暑期第五场 - k-MEX 1007</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© contraflow | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
