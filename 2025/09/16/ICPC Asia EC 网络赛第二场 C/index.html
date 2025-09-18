@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="contraflow">
+
+
+
+
+
+<title>ICPC Asia EC 网络赛第二场 C | contraflow&#39;s blog</title>
+
+
+
+    <link rel="icon" href="/image/icpc_logo.png">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+    
+
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const pagebody = document.getElementsByTagName('body')[0]
+
+            function setTheme(status) {
+
+                if (status === 'dark') {
+                    window.sessionStorage.theme = 'dark'
+                    pagebody.classList.add('dark-theme');
+
+                } else if (status === 'light') {
+                    window.sessionStorage.theme = 'light'
+                    pagebody.classList.remove('dark-theme');
+                }
+            };
+
+            setTheme(window.sessionStorage.theme)
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">contraflow&#39;s blog</a></div>
+            <div class="menu navbar-right">
+                
+                <a class="menu-item" href="/archives/">Posts</a>
+                
+                <a class="menu-item" href="/categories/">Categories</a>
+                
+                <a class="menu-item" href="/tags/">Tags</a>
+                
+                <a class="menu-item" href="/about/">About</a>
+                
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">contraflow&#39;s blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">
+                    <svg class="menu-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M4.5 17.27q-.213 0-.356-.145T4 16.768t.144-.356t.356-.143h15q.213 0 .356.144q.144.144.144.357t-.144.356t-.356.143zm0-4.77q-.213 0-.356-.144T4 11.999t.144-.356t.356-.143h15q.213 0 .356.144t.144.357t-.144.356t-.356.143zm0-4.77q-.213 0-.356-.143Q4 7.443 4 7.23t.144-.356t.356-.143h15q.213 0 .356.144T20 7.23t-.144.356t-.356.144z"/></svg>
+                    <svg class="close-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Material Symbols Light by Google - https://github.com/google/material-design-icons/blob/master/LICENSE --><path fill="currentColor" d="m12 12.708l-5.246 5.246q-.14.14-.344.15t-.364-.15t-.16-.354t.16-.354L11.292 12L6.046 6.754q-.14-.14-.15-.344t.15-.364t.354-.16t.354.16L12 11.292l5.246-5.246q.14-.14.345-.15q.203-.01.363.15t.16.354t-.16.354L12.708 12l5.246 5.246q.14.14.15.345q.01.203-.15.363t-.354.16t-.354-.16z"/></svg>
+                </div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                <a class="menu-item" href="/archives/">Posts</a>
+                
+                <a class="menu-item" href="/categories/">Categories</a>
+                
+                <a class="menu-item" href="/tags/">Tags</a>
+                
+                <a class="menu-item" href="/about/">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if (toggleMenu.classList.contains("active")) {
+            toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        } else {
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    var tocbot_timer;
+    var DEPTH_MAX = 6; // 为 6 时展开所有
+    var tocbot_default_config = {
+        tocSelector: '.tocbot-list',
+        contentSelector: '.post-content',
+        headingSelector: 'h1, h2, h3, h4, h5',
+        orderedList: false,
+        scrollSmooth: true,
+        onClick: extend_click,
+    };
+
+    function extend_click() {
+        clearTimeout(tocbot_timer);
+        tocbot_timer = setTimeout(function() {
+            tocbot.refresh(obj_merge(tocbot_default_config, {
+                hasInnerContainers: true
+            }));
+        }, 420); // 这个值是由 tocbot 源码里定义的 scrollSmoothDuration 得来的
+    }
+
+    document.ready(function() {
+        tocbot.init(obj_merge(tocbot_default_config, {
+            collapseDepth: 1
+        }));
+    });
+
+    function expand_toc() {
+        var b = document.querySelector('.tocbot-toc-expand');
+        var expanded = b.getAttribute('data-expanded');
+        expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
+        tocbot.refresh(obj_merge(tocbot_default_config, {
+            collapseDepth: expanded ? 1 : DEPTH_MAX
+        }));
+        b.innerText = expanded ? 'Expand all' : 'Collapse all';
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function obj_merge(target, source) {
+        for (var item in source) {
+            if (source.hasOwnProperty(item)) {
+                target[item] = source[item];
+            }
+        }
+        return target;
+    }
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">ICPC Asia EC 网络赛第二场 C</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">contraflow</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">September 16, 2025&nbsp;&nbsp;13:32:10</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/XCPC/">XCPC</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h2 id="题面"><a href="#题面" class="headerlink" title="题面"></a>题面</h2><p><img src="/../images/Pasted%20image%2020250916145603.png"></p>
+<blockquote>
+<p>[!Tip]- 官方题解<br>考虑二分贪心判定 $x$：</p>
+<p>将 $F_1, F_2, F_4$ 的值都先给对应的人，$F_7$ 可以最后决定随意分配，所以只需要关心 $F_3, F_5, F_6$。</p>
+<p>优先将 $F_3$ 分配给第一个人，$F_6$ 分配给第二个人，$F_5$ 分配给第三个人。<br>这样第一个人就可以选择至多 $F_3$ 分配给第二个人，第二个人可以选择至多 $F_6$ 分配给第三个人，第三个人可以选择至多 $F_5$ 分配给第一个人。</p>
+<p>假设 $b_i$ 是 $i$ 这个人当前有的题目数，考虑在符合条件的情况下能勾出来 $\max\left{ \min{ b_i - x,; x - b_{(i+1)\bmod 3},; F_{2i+2 \bmod 3} },; 0 \right}$ 给 $b_{i+1}$。</p>
+<p>$i \to (i+2)\bmod 3$ 同理，可以通过类似的调整让 $\sum \min(b_i, x)$ 尽可能大，最后判定成功条件就是 $\sum \min(b_i, x) + F_7 \geq 3x$</p>
+<p>本题也可以使用 <strong>Hall 定理&#x2F;网络流</strong> 判定通过。</p>
+</blockquote>
+<h2 id="思路：二分答案"><a href="#思路：二分答案" class="headerlink" title="思路：二分答案"></a>思路：二分答案</h2><p>这道题是让我们对题目进行分配，使得三人中完成题目最少的人能完成的题目数最多</p>
+<p>有点拗口，但是：<strong>最少的最多</strong>，是什么？<strong>二分答案</strong></p>
+<p>我们二分一个 $x$ ，这个 $x$ 是答案，也就是三个人都能分到的最小的题目数</p>
+<p>去检查分配完三条边之后，三个人分到的题目数和 $x$ 之间的差值 的和，能否被 $f7$ 覆盖</p>
+<p>$f7$ 是用来救火的，只需要看 $f3$、$f5$、$f6$ 这三条能被两人分配的边就行</p>
+<p>我们的目的，就是找到最优的三条边分配的优先顺序，同时还要知道分配这条边时先分配给谁，再分配给谁</p>
+<p>总共是 $3! * 2 ^ 3 &#x3D; 6 * 8 &#x3D; 48$ 种情况<br><strong>不妨暴力</strong></p>
+<p>当然，暴力也要知道怎么写：</p>
+<ul>
+<li><p>对于 $3!$ ，可以用 <code>next_permutation</code> 排列每一种情况，即代码中的 <code>id</code>，用来维护先分配谁</p>
+</li>
+<li><p>而对于 $2^3$ 可以用 <strong>状态压缩</strong>，即代码中的 <code>mask</code>，用来维护先给谁</p>
+</li>
+</ul>
+<h2 id="第一种方法-代码"><a href="#第一种方法-代码" class="headerlink" title="第一种方法 - 代码"></a>第一种方法 - 代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> int long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> endl <span class="string">&#x27;\n&#x27;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Edge</span>&#123;</span><br><span class="line">    <span class="type">int</span> u, v, cap;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">fenpei</span><span class="params">(<span class="type">int</span>&amp; nu,<span class="type">int</span>&amp; nv,<span class="type">int</span> cap, <span class="type">bool</span> fg)</span></span>&#123;  <span class="comment">//进行分配</span></span><br><span class="line">    <span class="keyword">if</span>(fg)&#123;     <span class="comment">//先给u</span></span><br><span class="line">        <span class="type">int</span> t = <span class="built_in">min</span>(nu, cap);   </span><br><span class="line">        nu -= t; cap -= t;</span><br><span class="line">        t = <span class="built_in">min</span>(nv, cap);</span><br><span class="line">        nv -= t; cap -= t;  </span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;      <span class="comment">//先给v</span></span><br><span class="line">        <span class="type">int</span> t = <span class="built_in">min</span>(nv, cap);</span><br><span class="line">        nv -= t; cap -= t;</span><br><span class="line">        t = <span class="built_in">min</span>(nu, cap);</span><br><span class="line">        nu -= t; cap -= t;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">check</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> f1,<span class="type">int</span> f2, <span class="type">int</span> f3, <span class="type">int</span> f4, <span class="type">int</span> f5, <span class="type">int</span> f6, <span class="type">int</span> f7)</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> need[<span class="number">3</span>];</span><br><span class="line">    need[<span class="number">0</span>] = (x - f1); <span class="keyword">if</span>(need[<span class="number">0</span>] &lt; <span class="number">0</span>) need[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">    need[<span class="number">1</span>] = (x - f2); <span class="keyword">if</span>(need[<span class="number">1</span>] &lt; <span class="number">0</span>) need[<span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line">    need[<span class="number">2</span>] = (x - f4); <span class="keyword">if</span>(need[<span class="number">2</span>] &lt; <span class="number">0</span>) need[<span class="number">2</span>] = <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    Edge e[<span class="number">3</span>];  <span class="comment">//3条边</span></span><br><span class="line">    e[<span class="number">0</span>] = &#123;<span class="number">0</span>, <span class="number">1</span>, f3&#125;;</span><br><span class="line">    e[<span class="number">1</span>] = &#123;<span class="number">0</span>, <span class="number">2</span>, f5&#125;;</span><br><span class="line">    e[<span class="number">2</span>] = &#123;<span class="number">1</span>, <span class="number">2</span>, f6&#125;;</span><br><span class="line">    </span><br><span class="line">    <span class="type">int</span> id[<span class="number">3</span>] = &#123;<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>&#125;;  <span class="comment">//边的访问顺序</span></span><br><span class="line">    <span class="keyword">do</span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> mask = <span class="number">0</span>; mask &lt; <span class="number">8</span>; mask++)&#123;    <span class="comment">//看对于每条边，优先访问哪个人</span></span><br><span class="line">            <span class="type">int</span> n0 = need[<span class="number">0</span>], n1 = need[<span class="number">1</span>], n2 = need[<span class="number">2</span>];</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> k = <span class="number">0</span>; k &lt; <span class="number">3</span>; k++)&#123;     <span class="comment">//依次处理3条边</span></span><br><span class="line">                <span class="type">int</span> idx = id[k];</span><br><span class="line">                <span class="type">int</span> u = e[idx].u;</span><br><span class="line">                <span class="type">int</span> v = e[idx].v;</span><br><span class="line">                <span class="type">int</span> cap = e[idx].cap;</span><br><span class="line">                <span class="type">bool</span> fg = ((mask &gt;&gt; k) &amp; <span class="number">1</span>) == <span class="number">0</span>; <span class="comment">//获取第k位情况，0先给u，1先给v</span></span><br><span class="line">                <span class="keyword">if</span>(u == <span class="number">0</span> &amp;&amp; v == <span class="number">1</span>)&#123;</span><br><span class="line">                    <span class="built_in">fenpei</span>(n0, n1, cap, fg);</span><br><span class="line">                &#125;<span class="keyword">else</span> <span class="keyword">if</span>(u == <span class="number">0</span> &amp;&amp; v == <span class="number">2</span>)&#123;</span><br><span class="line">                    <span class="built_in">fenpei</span>(n0, n2, cap, fg);</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    <span class="built_in">fenpei</span>(n1, n2, cap, fg);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="type">int</span> left = n0 + n1 + n2;</span><br><span class="line">            <span class="keyword">if</span>(left &lt;= f7)  <span class="keyword">return</span> <span class="literal">true</span>;    <span class="comment">//如果能兜得住，直接返回</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;<span class="keyword">while</span>(<span class="built_in">next_permutation</span>(id, id + <span class="number">3</span>));   <span class="comment">//遍历所有的情况</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;   <span class="comment">//6种情况都不行，返回false</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    ios::<span class="built_in">sync_with_stdio</span>(<span class="literal">false</span>);</span><br><span class="line">    cin.<span class="built_in">tie</span>(<span class="number">0</span>), cout.<span class="built_in">tie</span>(<span class="number">0</span>);</span><br><span class="line">    <span class="type">int</span> T;</span><br><span class="line">    cin &gt;&gt; T;</span><br><span class="line">    <span class="keyword">while</span>(T--)&#123;</span><br><span class="line">        <span class="type">int</span> S;</span><br><span class="line">        cin &gt;&gt; S;</span><br><span class="line">        <span class="type">int</span> f1, f2, f3, f4, f5, f6, f7;</span><br><span class="line">        cin &gt;&gt; f1 &gt;&gt; f2 &gt;&gt; f3 &gt;&gt; f4 &gt;&gt; f5 &gt;&gt; f6 &gt;&gt; f7;</span><br><span class="line">        <span class="type">int</span> L = <span class="number">0</span>, R = S / <span class="number">3</span>;   <span class="comment">//二分答案，上限不超过S/3</span></span><br><span class="line">        <span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(L &lt;= R)&#123;</span><br><span class="line">            <span class="type">int</span> mid = (L + R) / <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span>(<span class="built_in">check</span>(mid, f1, f2, f3, f4 , f5 ,f6, f7))&#123;</span><br><span class="line">                ans = mid;</span><br><span class="line">                L = mid + <span class="number">1</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                R = mid - <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        cout &lt;&lt; ans &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="第二种方法：二分答案-最大流"><a href="#第二种方法：二分答案-最大流" class="headerlink" title="第二种方法：二分答案 + 最大流"></a>第二种方法：二分答案 + 最大流</h2><p>用 Dinic（bfs算分层 + dfs跑增广路）的做法</p>
+<h4 id="节点（总共-8-个）："><a href="#节点（总共-8-个）：" class="headerlink" title="节点（总共 8 个）："></a>节点（总共 8 个）：</h4><p>0: 源点 S<br>1: 边资源 E12，对应 F3（1 和 2 都能做）<br>2: 边资源 E13，对应 F5（1 和 3 都能做）<br>3: 边资源 E23，对应 F6（2 和 3 都能做）<br>4: 人 1（我们把它叫 A）<br>5: 人 2（叫 B）<br>6: 人 3（叫 C）<br>7: 汇点 T</p>
+<h4 id="边与容量（cap）："><a href="#边与容量（cap）：" class="headerlink" title="边与容量（cap）："></a>边与容量（cap）：</h4><p>S → E12 容量 F3<br>S → E13 容量 F5<br>S → E23 容量 F6<br>含义：三类“两人题”是我们的“原材料”，从源点发出。</p>
+<p>E12 → A、E12 → B，容量设为 INF（一个极大数）<br>E13 → A、E13 → C，容量 INF<br>E23 → B、E23 → C，容量 INF<br>含义：某类“两人题”只能流向它所连的两个人（连边约束），让算法自己决定分多少给两端。</p>
+<p>A → T 容量 need1<br>B → T 容量 need2<br>C → T 容量 need3<br>含义：三个人的“需求上限”，最多需要填到 x 就够了。</p>
+<h4 id="可行性检测"><a href="#可行性检测" class="headerlink" title="可行性检测"></a>可行性检测</h4><p>这样跑出的最大流 flow，表示“两人题”最多能覆盖的缺口数量。<br>还剩下的缺口数量 &#x3D; need1 + need2 + need3 − flow<br>由三人都能做的 F7 兜底。如果 F7 ≥ 这个剩余缺口，则可行；否则不可行。<br>也就是可行性条件：flow + F7 ≥ need1+need2+need3</p>
+<p>Dinic 求最大流的时间复杂度：$O(V^2 * E)$<br>但在本体是常数级别的操作<br>二分答案时间复杂度：$O(\log S)$</p>
+<p>总体时间复杂度：$O(\log S)$</p>
+<h2 id="第二种方法-代码"><a href="#第二种方法-代码" class="headerlink" title="第二种方法 - 代码"></a>第二种方法 - 代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> int long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> endl <span class="string">&#x27;\n&#x27;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Dinic</span> &#123;</span><br><span class="line">    <span class="keyword">struct</span> <span class="title class_">Edge</span> &#123;</span><br><span class="line">        <span class="type">int</span> to, cap, nxt;   <span class="comment">//终点to，容量cap，同一起点下一条边nxt</span></span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="type">static</span> <span class="type">const</span> <span class="type">int</span> MAXN = <span class="number">16</span>; <span class="comment">//只用到 8 个点</span></span><br><span class="line">    <span class="type">static</span> <span class="type">const</span> <span class="type">int</span> MAXE = <span class="number">64</span>; <span class="comment">//边数很小，为12</span></span><br><span class="line">    <span class="type">static</span> <span class="type">const</span> <span class="type">int</span> INF = LLONG_MAX;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> head[MAXN], level[MAXN], ptr[MAXN];</span><br><span class="line">    <span class="comment">// head 是以 u 为起点的第一条边在数组 e[] 里的下标，没有边是 -1</span></span><br><span class="line">    <span class="comment">// level 是BFS 分层图里，点 v 距离源点的层号；未访问是 -1</span></span><br><span class="line">    <span class="comment">// ptr 作当前弧优化用，DFS时记住“从哪条边继续扫”，避免重复从第一条边开始</span></span><br><span class="line">    Edge e[MAXE];</span><br><span class="line">    <span class="type">int</span> ecnt, n;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">Dinic</span>(<span class="type">int</span> n_ = <span class="number">0</span>) &#123; <span class="built_in">init</span>(n_); &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">init</span><span class="params">(<span class="type">int</span> n_)</span> </span>&#123; <span class="comment">//设定点数 n，把所有邻接表头设为 -1，清空边计数器</span></span><br><span class="line">        n = n_;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; MAXN; ++i)</span><br><span class="line">            head[i] = <span class="number">-1</span>;</span><br><span class="line">        ecnt = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">add_edge</span><span class="params">(<span class="type">int</span> u, <span class="type">int</span> v, <span class="type">int</span> c)</span> </span>&#123;</span><br><span class="line">        e[ecnt] = (Edge)&#123;v, c, head[u]&#125;;</span><br><span class="line">        head[u] = ecnt++;</span><br><span class="line">        e[ecnt] = (Edge)&#123;u, <span class="number">0</span>, head[v]&#125;;</span><br><span class="line">        head[v] = ecnt++;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">bfs</span><span class="params">(<span class="type">int</span> s, <span class="type">int</span> t)</span> </span>&#123;    <span class="comment">//分层</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; ++i)</span><br><span class="line">            level[i] = <span class="number">-1</span>;</span><br><span class="line">        queue&lt;<span class="type">int</span>&gt; q;</span><br><span class="line">        level[s] = <span class="number">0</span>;</span><br><span class="line">        q.<span class="built_in">push</span>(s);</span><br><span class="line">        <span class="keyword">while</span> (!q.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">            <span class="type">int</span> u = q.<span class="built_in">front</span>();</span><br><span class="line">            q.<span class="built_in">pop</span>();</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i = head[u]; i != <span class="number">-1</span>; i = e[i].nxt) &#123;</span><br><span class="line">                <span class="type">int</span> v = e[i].to;</span><br><span class="line">                <span class="keyword">if</span> (e[i].cap &gt; <span class="number">0</span> &amp;&amp; level[v] == <span class="number">-1</span>) &#123;   <span class="comment">//对残量正向边做bfs</span></span><br><span class="line">                    level[v] = level[u] + <span class="number">1</span>;</span><br><span class="line">                    q.<span class="built_in">push</span>(v);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> level[t] != <span class="number">-1</span>;  <span class="comment">//返回能否到T，即能否分层</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> u, <span class="type">int</span> t, <span class="type">int</span> f)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (u == t || f == <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span> f;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> &amp;i = ptr[u]; i != <span class="number">-1</span>; i = e[i].nxt) &#123;</span><br><span class="line">            <span class="type">int</span> v = e[i].to;    </span><br><span class="line">            <span class="keyword">if</span> (e[i].cap &gt; <span class="number">0</span> &amp;&amp; level[v] == level[u] + <span class="number">1</span>) &#123; <span class="comment">//这条边必须有容量</span></span><br><span class="line">                <span class="type">int</span> pushed = <span class="built_in">dfs</span>(v, t, <span class="built_in">min</span>(f, e[i].cap));</span><br><span class="line">                <span class="keyword">if</span> (pushed) &#123;</span><br><span class="line">                    e[i].cap -= pushed;</span><br><span class="line">                    e[i ^ <span class="number">1</span>].cap += pushed; <span class="comment">//反向边刚好就是下一个</span></span><br><span class="line">                    <span class="keyword">return</span> pushed;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">maxflow</span><span class="params">(<span class="type">int</span> s, <span class="type">int</span> t)</span> </span>&#123;     <span class="comment">//计算最大流</span></span><br><span class="line">        <span class="type">int</span> flow = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (<span class="built_in">bfs</span>(s, t)) &#123;     <span class="comment">//有没有下一条增广路</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; ++i)</span><br><span class="line">                ptr[i] = head[i];</span><br><span class="line">            <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">                <span class="type">int</span> pushed = <span class="built_in">dfs</span>(s, t, INF);    <span class="comment">//能不能push的动</span></span><br><span class="line">                <span class="keyword">if</span> (!pushed)</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                flow += pushed;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> flow;    <span class="comment">//返回最大流</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">static</span> <span class="keyword">inline</span> <span class="type">bool</span> <span class="title">feasible</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> f1, <span class="type">int</span> f2, <span class="type">int</span> f3, <span class="type">int</span> f4, <span class="type">int</span> f5,</span></span></span><br><span class="line"><span class="params"><span class="function">                            <span class="type">int</span> f6, <span class="type">int</span> f7)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> need1 = x - f1;<span class="keyword">if</span> (need1 &lt; <span class="number">0</span>) need1 = <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> need2 = x - f2;</span><br><span class="line">    <span class="keyword">if</span> (need2 &lt; <span class="number">0</span>)</span><br><span class="line">        need2 = <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> need3 = x - f4;</span><br><span class="line">    <span class="keyword">if</span> (need3 &lt; <span class="number">0</span>)</span><br><span class="line">        need3 = <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> total_need = need1 + need2 + need3;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 建图：S=0, E12=1, E13=2, E23=3, A=4, B=5, C=6, T=7</span></span><br><span class="line">    <span class="type">const</span> <span class="type">int</span> S = <span class="number">0</span>, E12 = <span class="number">1</span>, E13 = <span class="number">2</span>, E23 = <span class="number">3</span>, A = <span class="number">4</span>, B = <span class="number">5</span>, C = <span class="number">6</span>, T = <span class="number">7</span>;</span><br><span class="line">    <span class="function">Dinic <span class="title">din</span><span class="params">(<span class="number">8</span>)</span></span>;</span><br><span class="line">    din.<span class="built_in">add_edge</span>(S, E12, f3);</span><br><span class="line">    din.<span class="built_in">add_edge</span>(S, E13, f5);</span><br><span class="line">    din.<span class="built_in">add_edge</span>(S, E23, f6);</span><br><span class="line"></span><br><span class="line">    <span class="type">const</span> <span class="type">int</span> INF = Dinic::INF;</span><br><span class="line">    din.<span class="built_in">add_edge</span>(E12, A, INF);</span><br><span class="line">    din.<span class="built_in">add_edge</span>(E12, B, INF);</span><br><span class="line">    din.<span class="built_in">add_edge</span>(E13, A, INF);</span><br><span class="line">    din.<span class="built_in">add_edge</span>(E13, C, INF);</span><br><span class="line">    din.<span class="built_in">add_edge</span>(E23, B, INF);</span><br><span class="line">    din.<span class="built_in">add_edge</span>(E23, C, INF);</span><br><span class="line"></span><br><span class="line">    din.<span class="built_in">add_edge</span>(A, T, need1);</span><br><span class="line">    din.<span class="built_in">add_edge</span>(B, T, need2);</span><br><span class="line">    din.<span class="built_in">add_edge</span>(C, T, need3);</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> flow = din.<span class="built_in">maxflow</span>(S, T);</span><br><span class="line">    <span class="keyword">return</span> flow + f7 &gt;= total_need; <span class="comment">//检验得到的最大流+救火的f7是否大于最大需要就可以</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    ios::<span class="built_in">sync_with_stdio</span>(<span class="literal">false</span>);</span><br><span class="line">    cin.<span class="built_in">tie</span>(<span class="number">0</span>), cout.<span class="built_in">tie</span>(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> T;</span><br><span class="line">    cin &gt;&gt; T;</span><br><span class="line">    <span class="keyword">while</span> (T--) &#123;</span><br><span class="line">        <span class="type">int</span> S;</span><br><span class="line">        <span class="type">int</span> f1, f2, f3, f4, f5, f6, f7;</span><br><span class="line">        cin &gt;&gt; S;</span><br><span class="line">        cin &gt;&gt; f1 &gt;&gt; f2 &gt;&gt; f3 &gt;&gt; f4 &gt;&gt; f5 &gt;&gt; f6 &gt;&gt; f7;</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span> L = <span class="number">0</span>, R = S / <span class="number">3</span>, ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (L &lt;= R) &#123;</span><br><span class="line">            <span class="type">int</span> mid = (L + R) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">feasible</span>(mid, f1, f2, f3, f4, f5, f6, f7)) &#123;</span><br><span class="line">                ans = mid;</span><br><span class="line">                L = mid + <span class="number">1</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                R = mid - <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        cout &lt;&lt; ans &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="第三种方法：Hall定理"><a href="#第三种方法：Hall定理" class="headerlink" title="第三种方法：Hall定理"></a>第三种方法：Hall定理</h2><p><strong>Hall 类条件 &#x2F; 子集容量约束</strong>：</p>
+<blockquote>
+<p>对任何一组学生 $U$（也就是 ${1,2,3}$ 的任意<strong>非空子集</strong>），<br>他们想每人至少拿到 $x$ 道题，总共就得到 $|U| \cdot x$ 道；<br>但能给 $U$ 的题，只有那些<strong>至少有一个属于 $U$ 能做</strong>的题，记作 $\mathrm{cap}(U)$。<br>所以必须满足：$|U| \cdot x \leq \mathrm{cap}(U)$</p>
+</blockquote>
+<p>这对<strong>所有非空子集</strong> $U$ 都要成立，于是得到一串上界：<br>$$<br>x \leq \frac{\mathrm{cap}(U)}{|U|} \qquad (\forall \ \varnothing \neq U \subseteq {1,2,3})<br>$$<br>真正能做到的最大 $x$ 就是这些上界的最小值：<br>$$<br>x^* &#x3D; \min_{\varnothing \neq U \subseteq {1,2,3}} \frac{\mathrm{cap}(U)}{|U|}<br>$$<br>因为本题只有 $3$ 个人，${1,2,3}$ 的非空子集一共 $2^3 - 1 &#x3D; 7$ 个，<br>所以只要把这 <strong>7 个子集的</strong> $\mathrm{cap}(U)&#x2F;|U|$ 算出来取最小，就得到答案（再做整数下取整即可）</p>
+<p>实际上就是算他们可调配的资源&#x2F;能调用这些资源的人数</p>
+<h2 id="第三种方法-代码"><a href="#第三种方法-代码" class="headerlink" title="第三种方法 - 代码"></a>第三种方法 - 代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="type">int</span> T;</span><br><span class="line">	cin &gt;&gt; T;</span><br><span class="line">	<span class="keyword">while</span> (T--) &#123;</span><br><span class="line">		<span class="type">int</span> S;</span><br><span class="line">		cin &gt;&gt; S;</span><br><span class="line">		<span class="type">int</span> f1, f2, f3, f4, f5, f6, f7;</span><br><span class="line">		cin &gt;&gt; f1 &gt;&gt; f2 &gt;&gt; f3 &gt;&gt; f4 &gt;&gt; f5 &gt;&gt; f6 &gt;&gt; f7;</span><br><span class="line">		<span class="type">int</span> A = f1 + f3 + f5 + f7;</span><br><span class="line">		<span class="type">int</span> B = f2 + f3 + f6 + f7;</span><br><span class="line">		<span class="type">int</span> C = f4 + f5 + f6 + f7;</span><br><span class="line">		<span class="type">int</span> D = f1 + f2 + f3 + f5 + f6 + f7;</span><br><span class="line">		<span class="type">int</span> E = f1 + f3 + f4 + f5 + f6 + f7;</span><br><span class="line">		<span class="type">int</span> F = f2 + f3 + f4 + f5 + f6 + f7;</span><br><span class="line">		<span class="type">int</span> ans = <span class="built_in">min</span>(&#123;A, B, C, D/<span class="number">2</span>, E/<span class="number">2</span>, F/<span class="number">2</span>, S/<span class="number">3</span>&#125;);</span><br><span class="line">		cout &lt;&lt; ans &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p><a target="_blank" rel="noopener" href="https://qoj.ac/contest/2524">【qoj】补题链接 + 题面 + 题解 + 榜单</a></p>
+<p><a target="_blank" rel="noopener" href="https://chatgpt.com/share/68c90afd-3210-8003-b06d-0bedb70ea8d6">和gpt的对话</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/103132159">参考资料：【知乎】十分钟快速掌握最大流算法</a></p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>contraflow</span>
+                    </p>
+                
+                
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E4%BA%8C%E5%88%86/"># 二分</a>
+                    
+                        <a href="/tags/%E8%B4%AA%E5%BF%83/"># 贪心</a>
+                    
+                        <a href="/tags/%E7%8A%B6%E6%80%81%E5%8E%8B%E7%BC%A9/"># 状态压缩</a>
+                    
+                        <a href="/tags/%E6%8E%92%E5%88%97%E7%BB%84%E5%90%88/"># 排列组合</a>
+                    
+                        <a href="/tags/%E7%BD%91%E7%BB%9C%E6%B5%81/"># 网络流</a>
+                    
+                        <a href="/tags/%E8%8B%B1%E6%96%87%E9%A2%98%E9%9D%A2/"># 英文题面</a>
+                    
+                        <a href="/tags/Hall%E5%AE%9A%E7%90%86/"># Hall定理</a>
+                    
+                        <a href="/tags/%E6%9C%80%E5%A4%A7%E6%B5%81/"># 最大流</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2025/09/16/ICPC%20Asia%20EC%20%E7%BD%91%E7%BB%9C%E8%B5%9B%E7%AC%AC%E4%BA%8C%E5%9C%BA%20D/">ICPC Asia EC 网络赛第二场 D</a>
+            
+            
+            <a class="next" rel="next" href="/2025/09/14/25%E6%9D%AD%E7%94%B5%E5%A4%9A%E6%A0%A1%E6%9A%91%E6%9C%9F%E7%AC%AC%E4%B9%9D%E5%9C%BA%20-%20%E4%B9%98%E6%B3%95%E9%80%86%E5%85%83%201009/">25杭电多校暑期第九场 - 乘法逆元 1009</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© contraflow | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
